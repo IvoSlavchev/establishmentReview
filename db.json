@@ -1,0 +1,147 @@
+{
+	"User": [{
+		"id": 1,
+		"username": "PeshoGoshov",
+		"password": "3ad6dff0608ae3338c5fff1e4b8b5ade",
+		"email": "pesho_goshov@vba.gb",
+		"favourites": [{
+			"id": 1
+		}, {
+			"id": 2
+		}]
+	}, {
+		"id": 2,
+		"username": "SpiridonKazandjiev",
+		"password": "5f33764eaa853d95dd56220a0ec72789",
+		"email": "spiro_88@gmail.net",
+		"favourites": [{
+			"id": 1
+		}]
+	}, {
+		"id": 3,
+		"username": "IvanIvanov",
+		"password": "971e03b69ab666df3e78f1edd366b211",
+		"email": "iv_iv@gmail.net",
+		"favourites": [{
+			"id": 1
+		}, {
+			"id": 3
+		}]
+	}],
+
+	"Establishment": [{
+		"id": 1,
+		"username": "BaikalRestEstbl",
+		"password": "06a0597243c2f4b369fd54482a7a5abe",
+		"name": "Baikal",
+		"email": "baikal_restaurant@bg.abv",
+		"telephoneNumber": "+123 118 432",
+		"address": "Sofia, 'G.Peshov' st. 24",
+		"latitude": 30.2,
+		"longtitude": 20.3,
+		"type": "restaurant",
+		"description": "Located near a gorgeous lake, working times 10:00 to 23:00",
+		"averageRating": 5,
+		"reviewsCount": 1,
+		"favouritedBy": [{
+			"id": 1
+		}, {
+			"id": 2
+		}, {
+			"id": 3
+		}]
+	}, {
+		"id": 2,
+		"username": "CineGreatProf",
+		"password": "44905dd2c08563cbf44d54b02710331b",
+		"name": "CineGreat",
+		"email": "cine_great_pr@gmail.pk",
+		"telephoneNumber": "+321 881 882",
+		"address": "Bourgas, 'Kraibrejna' st. 32",
+		"latitude": 40.3,
+		"longtitude": 30.4,
+		"type": "cinema",
+		"description": "5 different halls, each fitting up to 90 people.",
+		"averageRating": 3,
+		"reviewsCount": 1,
+		"favouritedBy": [{
+			"id": 1
+		}]
+	}, {
+		"id": 3,
+		"username": "RestChernia",
+		"password": "bb68e7affc8e5739c88896101bf8e5ac",
+		"name": "Cherniqt pun",
+		"email": "ch_pun@mail.gb",
+		"telephoneNumber": "+312 154 314",
+		"address": "Plovdiv, 'Plovdivska' st. 12",
+		"latitude": 35.3,
+		"longtitude": 42.4,
+		"type": "restaurant",
+		"description": "Sit in a comfortable atmosphere and enjoy great meals at our lovely restaurant!",
+		"averageRating": 4,
+		"reviewsCount": 1,
+		"favouritedBy": [{
+			"id": 1
+		}, {
+			"id": 3
+		}]
+	}],
+
+	"Review": [{
+		"id": 1,
+		"user": 1,
+		"establishment": 1,
+		"rating": 5,
+		"opinion": "Very nice atmosphere, many free tables.",
+		"date": "2016-03-04"
+	}, {
+		"id": 2,
+		"user": 2,
+		"establishment": 2,
+		"rating": 3,
+		"opinion": "Decent cinema, offers discounts aswell, but nothing stands out.",
+		"date": "2016-03-05"
+	}, {
+		"id": 3,
+		"user": 1,
+		"establishment": 3,
+		"rating": 4,
+		"opinion": "Wonderful place, has great meals, but sometimes can be crowded.",
+		"date": "2016-04-12"
+	}],
+
+	"Question": [{
+		"id": 1,
+		"user": 1,
+		"establishment": 1,
+		"question": "How many tables are there?",
+		"date": "2016-02-25"
+	}, {
+		"id": 2,
+		"user": 2,
+		"establishment": 2,
+		"question": "Is there a discount for children?",
+		"date": "2016-03-02"
+	}, {
+		"id": 3,
+		"user": 3,
+		"establishment": 3,
+		"question": "What time is the restaurant open?",
+		"date": "2016-03-25"
+	}],
+
+	"Answer": [{
+		"id": 1,
+		"question": 1,
+		"answer": "There are 25 tables."
+	}, {
+		"id": 2,
+		"question": 2,
+		"answer": "Yes, there is - 12%."
+	}, {
+		"id": 3,
+		"question": 3,
+		"answer": "09:30-22:30 on weekdays, 09:00-23:00 during the weekend."
+	}]
+}
