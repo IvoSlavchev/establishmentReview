@@ -1,5 +1,5 @@
 {
-	"User": [{
+	"users": [{
 		"id": 1,
 		"username": "PeshoGoshov",
 		"password": "3ad6dff0608ae3338c5fff1e4b8b5ade",
@@ -29,7 +29,7 @@
 		}]
 	}],
 
-	"Establishment": [{
+	"establishments": [{
 		"id": 1,
 		"username": "BaikalRestEstbl",
 		"password": "06a0597243c2f4b369fd54482a7a5abe",
@@ -88,7 +88,7 @@
 		}]
 	}],
 
-	"Review": [{
+	"reviews": [{
 		"id": 1,
 		"user": 1,
 		"establishment": 1,
@@ -111,7 +111,7 @@
 		"date": "2016-04-12"
 	}],
 
-	"Question": [{
+	"questions": [{
 		"id": 1,
 		"user": 1,
 		"establishment": 1,
@@ -131,7 +131,7 @@
 		"date": "2016-03-25"
 	}],
 
-	"Answer": [{
+	"answers": [{
 		"id": 1,
 		"question": 1,
 		"answer": "There are 25 tables."
