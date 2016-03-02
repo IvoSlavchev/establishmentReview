@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	"use strict";
 	
-	var ENDPOINT = "http://localhost:3000/establishments";
+	var ENDPOINT = "http://localhost:8080/establishments/signup";
 	
 	$("button").click(function() {
 		var establishment = {
