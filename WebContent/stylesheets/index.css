@@ -1,0 +1,25 @@
+body {
+	background-image: url('../images/bkg.jpg');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+}
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 7%;
+}
+
+a {
+	margin: 1% 0;
+}
+
+#buttons {
+	text-align: center;
+}
+
+label {
+	color: #8a6d3b;
+}
