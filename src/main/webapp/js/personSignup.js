@@ -3,20 +3,6 @@ $(document).ready(function() {
 	
 	var ENDPOINT = "http://localhost:8080/establishmentReview/api/person/signup";
 	
-	function isEmail(email) {
-	    var regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	    return regExp.test(email);
-	}
-	
-	function isEmpty(person) {
-		return person.username == "" || person.password == "";
-	}
-	
-	function listError(text) {
-		$("#errors").empty();
-		$("#errors").append("<li>" + text + "</li>");
-	}
-	
 	$("button").click(function() {
 		var person = {
 			username: $("[name='username']").val(),

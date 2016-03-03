@@ -1,0 +1,113 @@
+package main.java.org.elsysbg.ip.review.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+@Entity
+public class Establishment {
+	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	private long id;
+	
+	@Column(nullable = false, unique=true)
+	private String username;
+	
+	@Column(nullable = false)
+	private String password;
+	
+	@Column(nullable = false)
+	private String email;
+	
+	@Column(nullable = false)
+	private String name;
+	
+	@Column(nullable = false)
+	private String telephone;
+	
+	@Column(nullable = false)
+	private String address;
+	
+	@Column(nullable = false)
+	private String type;
+	
+	@Column(nullable = false)
+	private String description;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+}

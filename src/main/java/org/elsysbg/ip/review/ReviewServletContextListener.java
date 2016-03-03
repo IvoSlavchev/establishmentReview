@@ -2,6 +2,7 @@ package main.java.org.elsysbg.ip.review;
 
 import main.java.org.elsysbg.ip.review.services.EntityManagerService;
 import main.java.org.elsysbg.ip.review.services.PersonsService;
+import main.java.org.elsysbg.ip.review.services.EstablishmentsService;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -19,6 +20,7 @@ public class ReviewServletContextListener extends GuiceServletContextListener {
 				@Override
 				protected void configureServlets() {
 					bind(PersonsService.class);
+					bind(EstablishmentsService.class);
 					bind(EntityManagerService.class);
 				}
 			});

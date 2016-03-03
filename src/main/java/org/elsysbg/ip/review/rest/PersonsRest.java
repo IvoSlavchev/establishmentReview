@@ -24,6 +24,6 @@ public class PersonsRest {
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Person createTask(Person person) {
-		return personsService.createTask(person);
+		return personsService.createPerson(person);
 	}
 }
