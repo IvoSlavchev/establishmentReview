@@ -23,6 +23,9 @@ public class Person {
 	
 	@Column(nullable = false)
 	private String email;
+	
+	@Column(nullable = false)
+	private String salt;
 
 	public long getId() {
 		return id;
@@ -53,5 +56,13 @@ public class Person {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 }

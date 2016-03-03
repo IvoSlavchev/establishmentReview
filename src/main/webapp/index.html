@@ -9,20 +9,23 @@
 	</head>
 	<body>
 		<div class="container">
-			<h1 class="text-center text-danger">EstablishmentReview</h1>
 			<div class="row">
-				<form class="form-horizontal" method="post">
-					<div class="form-group">
-						<label>Username:</label>
-						<input type="text" name="username" class="form-control" />
-						<label>Password:</label>
-						<input type="password" name="password" class="form-control" />
-						<button class="btn btn-warning" type="button">Log in</button>	
-					</div>
-				</form>
 				<div id="buttons">
-					<a href="person/signup.html" class="btn btn-danger btn-lg">Sign up as a person</a>
-					<a href="establishment/signup.html" class="btn btn-danger btn-lg">Sign up as an establishment</a>
+					<table>
+						<tr>
+							<th></th>
+							<th><h2 class="text-center text-warning">Log in </h2></th>
+							<th></th>
+							<th><h2 class="text-center text-warning">Sign up</h2></th>
+						</tr>
+						<tr>
+							<td><a href="person/login.html" class="btn btn-warning">Person</a></td>
+							<td><a href="establishment/login.html" class="btn btn-danger">Establishment</a></td>
+							<td></td>
+							<td><a href="person/signup.html" class="btn btn-warning">Person</a></td>
+							<td><a href="establishment/signup.html" class="btn btn-danger">Establishment</a></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>

@@ -24,20 +24,23 @@ public class Establishment {
 	@Column(nullable = false)
 	private String email;
 	
-	@Column(nullable = false)
+	@Column()
 	private String name;
 	
-	@Column(nullable = false)
+	@Column()
 	private String telephone;
 	
-	@Column(nullable = false)
+	@Column()
 	private String address;
 	
-	@Column(nullable = false)
+	@Column()
 	private String type;
 	
-	@Column(nullable = false)
+	@Column()
 	private String description;
+	
+	@Column(nullable = false)
+	private String salt;
 
 	public long getId() {
 		return id;
@@ -109,5 +112,13 @@ public class Establishment {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 }
