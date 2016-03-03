@@ -16,3 +16,7 @@ label, select {
 button {
 	margin-top: 3%;
 }
+
+#errors {
+	text-align: center;
+}

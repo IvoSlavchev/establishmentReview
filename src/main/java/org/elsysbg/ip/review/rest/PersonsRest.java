@@ -7,23 +7,23 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import main.java.org.elsysbg.ip.review.entities.User;
-import main.java.org.elsysbg.ip.review.services.UsersService;
+import main.java.org.elsysbg.ip.review.entities.Person;
+import main.java.org.elsysbg.ip.review.services.PersonsService;
 
-@Path("/users")
-public class UsersRest {
-	private final UsersService usersService;
+@Path("/person")
+public class PersonsRest {
+	private final PersonsService personsService;
 
 	@Inject
-	public UsersRest(UsersService usersService) {
-		this.usersService = usersService;
+	public PersonsRest(PersonsService personsService) {
+		this.personsService = personsService;
 	}
 	
 	@POST
 	@Path("/signup")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public User createTask(User user) {
-		return usersService.createTask(user);
+	public Person createTask(Person person) {
+		return personsService.createTask(person);
 	}
 }

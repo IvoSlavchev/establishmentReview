@@ -4,24 +4,24 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 
-import main.java.org.elsysbg.ip.review.entities.User;
+import main.java.org.elsysbg.ip.review.entities.Person;
 
 @Singleton
-public class UsersService {
+public class PersonsService {
 	private final EntityManagerService entityManagerService;
 	
 	@Inject
-	public UsersService(EntityManagerService entityManagerService) {
+	public PersonsService(EntityManagerService entityManagerService) {
 		this.entityManagerService = entityManagerService;
 	}
 
-	public User createTask(User user) {
+	public Person createTask(Person person) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
 			em.getTransaction().begin();
-			em.persist(user);
+			em.persist(person);
 			em.getTransaction().commit();
-			return user;
+			return person;
 		} finally {
 			if (em.getTransaction().isActive()) {
 				em.getTransaction().rollback();

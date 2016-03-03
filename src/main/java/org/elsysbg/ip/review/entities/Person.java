@@ -9,13 +9,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Entity
-public class User {
+public class Person {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique=true)
 	private String username;
 	
 	@Column(nullable = false)

@@ -5,7 +5,7 @@
 
 	<persistence-unit name="review-jpa">
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-		<class>main.java.org.elsysbg.ip.review.entities.User</class>
+		<class>main.java.org.elsysbg.ip.review.entities.Person</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
