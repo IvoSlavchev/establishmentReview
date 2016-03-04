@@ -3,7 +3,7 @@ $(document).ready(function() {
 	
 	var ENDPOINT = "http://localhost:8080/establishmentReview/api/establishment/signup";
 	
-	$("button").click(function() {
+	$("#signup").click(function() {
 		var establishment = {
 			username: $("[name='username']").val(),
 			password: $("[name='password']").val(),
@@ -16,29 +16,10 @@ $(document).ready(function() {
 		};
 		var password2 = $("[name='password2']").val();
 		
-		if (!isEmpty(establishment)) {
-			if (establishment.password == password2) {
-				if (isEmail(establishment.email)) {	
-					$.ajax(ENDPOINT, {
-						method: "POST",
-						dataType: "json",
-						data: JSON.stringify(establishment),
-						contentType: "application/json; charset=utf-8",
-						error: function() {
-							listError(establishment.username + " is already taken!");
-						},
-						success: function() {
-							window.location='http://localhost:8080/establishmentReview';
-						}
-					});
-				} else {
-					listError(establishment.email + " is not a valid email!");
-				}
-			} else {
-				listError("Passwords don't match!");
-			}
+		if (establishment.password == password2) {
+			sendSignup(establishment, ENDPOINT)
 		} else {
-			listError("Username and password fields are required!");
+			listError("Passwords don't match!");
 		}
 	});
 });
