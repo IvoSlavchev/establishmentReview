@@ -39,4 +39,23 @@ public class PersonsService {
 			em.close();
 		}
 	}
+	
+	public void loginPerson(Person person) {
+		final EntityManager em = entityManagerService.createEntityManager();
+		try {
+			final Person fromDb = (Person) em.createNamedQuery("Person.findByUsername").setParameter("username",
+					person.getUsername()).getSingleResult();
+			final PasswordHasher ph = new PasswordHasher();
+			try {
+				final String enteredPassword = ph.getSecurePassword(person.getPassword(), fromDb.getSalt());
+				if (!enteredPassword.equals(fromDb.getPassword())) {
+					throw new SecurityException();
+				}
+			} catch (NoSuchAlgorithmException e) {
+	        	e.printStackTrace();
+	        }
+		} finally {
+			em.close();
+		}
+	}
 }

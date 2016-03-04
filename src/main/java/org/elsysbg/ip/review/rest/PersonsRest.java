@@ -23,7 +23,15 @@ public class PersonsRest {
 	@Path("/signup")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Person createTask(Person person) {
+	public Person createPerson(Person person) {
 		return personsService.createPerson(person);
+	}
+	
+	@POST
+	@Path("/login")
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public void loginPerson(Person person) {
+		personsService.loginPerson(person);
 	}
 }
