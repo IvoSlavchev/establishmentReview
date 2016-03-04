@@ -40,4 +40,23 @@ public class EstablishmentsService {
 			em.close();
 		}
 	}
+	
+	public void loginEstablishment(Establishment establishment) {
+		final EntityManager em = entityManagerService.createEntityManager();
+		try {
+			final Establishment fromDb = (Establishment) em.createNamedQuery("Establishment.findByUsername")
+					.setParameter("username", establishment.getUsername()).getSingleResult();
+			final PasswordHasher ph = new PasswordHasher();
+			try {
+				final String enteredPassword = ph.getSecurePassword(establishment.getPassword(), fromDb.getSalt());
+				if (!enteredPassword.equals(fromDb.getPassword())) {
+					throw new SecurityException();
+				}
+			} catch (NoSuchAlgorithmException e) {
+	        	e.printStackTrace();
+	        }
+		} finally {
+			em.close();
+		}
+	}
 }

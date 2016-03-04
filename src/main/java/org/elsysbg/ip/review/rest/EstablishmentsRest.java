@@ -11,11 +11,11 @@ import main.java.org.elsysbg.ip.review.entities.Establishment;
 import main.java.org.elsysbg.ip.review.services.EstablishmentsService;
 
 @Path("/establishment")
-public class EstablshmentsRest {
+public class EstablishmentsRest {
 	private final EstablishmentsService establishmentsService;
 
 	@Inject
-	public EstablshmentsRest(EstablishmentsService establishmentsService) {
+	public EstablishmentsRest(EstablishmentsService establishmentsService) {
 		this.establishmentsService = establishmentsService;
 	}
 	
@@ -25,5 +25,13 @@ public class EstablshmentsRest {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Establishment createEstablishment(Establishment establishment) {
 		return establishmentsService.createEstablishment(establishment);
+	}
+	
+	@POST
+	@Path("/login")
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public void loginEstablishment(Establishment establishment) {
+		establishmentsService.loginEstablishment(establishment);
 	}
 }
