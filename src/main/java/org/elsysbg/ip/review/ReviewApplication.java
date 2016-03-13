@@ -1,4 +1,4 @@
-package main.java.org.elsysbg.ip.review;
+package org.elsysbg.ip.review;
 
 import javax.inject.Inject;
 

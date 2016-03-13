@@ -1,4 +1,4 @@
-package main.java.org.elsysbg.ip.review.services;
+package org.elsysbg.ip.review.services;
 
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;

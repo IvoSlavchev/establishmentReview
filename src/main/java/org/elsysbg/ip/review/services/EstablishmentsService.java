@@ -1,4 +1,4 @@
-package main.java.org.elsysbg.ip.review.services;
+package org.elsysbg.ip.review.services;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -6,8 +6,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 
-import main.java.org.elsysbg.ip.review.entities.Establishment;
-import main.java.org.elsysbg.ip.review.helpers.PasswordHasher;
+import org.elsysbg.ip.review.entities.Establishment;
+import org.elsysbg.ip.review.helpers.PasswordHasher;
 
 @Singleton
 public class EstablishmentsService {

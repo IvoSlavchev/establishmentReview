@@ -1,4 +1,4 @@
-package main.java.org.elsysbg.ip.review.helpers;
+package org.elsysbg.ip.review.helpers;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

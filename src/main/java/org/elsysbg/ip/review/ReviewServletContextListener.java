@@ -1,8 +1,8 @@
-package main.java.org.elsysbg.ip.review;
+package org.elsysbg.ip.review;
 
-import main.java.org.elsysbg.ip.review.services.EntityManagerService;
-import main.java.org.elsysbg.ip.review.services.PersonsService;
-import main.java.org.elsysbg.ip.review.services.EstablishmentsService;
+import org.elsysbg.ip.review.services.EntityManagerService;
+import org.elsysbg.ip.review.services.PersonsService;
+import org.elsysbg.ip.review.services.EstablishmentsService;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

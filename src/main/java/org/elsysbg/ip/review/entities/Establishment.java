@@ -1,4 +1,4 @@
-package main.java.org.elsysbg.ip.review.entities;
+package org.elsysbg.ip.review.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

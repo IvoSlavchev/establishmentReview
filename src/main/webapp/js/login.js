@@ -20,7 +20,8 @@ $(document).ready(function() {
 			success: function() {
 				var now = new Date();
 				now.setTime(now.getTime() + 3600 * 1000);
-				document.cookie = "session=" + obj.username + "; expires=" + now.toGMTString() + ";";
+				document.cookie = "session=" + type + ":" + obj.username + 
+					"; expires=" + now.toGMTString() + ";";
 				window.location = "http://localhost:8080/establishmentReview/" + type + "/dashboard.html";
 			}
 		});

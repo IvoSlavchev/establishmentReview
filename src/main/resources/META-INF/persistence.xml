@@ -5,8 +5,8 @@
 
 	<persistence-unit name="review-jpa">
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-		<class>main.java.org.elsysbg.ip.review.entities.Person</class>
-		<class>main.java.org.elsysbg.ip.review.entities.Establishment</class>
+		<class>org.elsysbg.ip.review.entities.Person</class>
+		<class>org.elsysbg.ip.review.entities.Establishment</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>

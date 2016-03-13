@@ -1,4 +1,4 @@
-package main.java.org.elsysbg.ip.review.rest;
+package org.elsysbg.ip.review.rest;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -7,10 +7,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import main.java.org.elsysbg.ip.review.entities.Establishment;
-import main.java.org.elsysbg.ip.review.services.EstablishmentsService;
+import org.elsysbg.ip.review.entities.Establishment;
+import org.elsysbg.ip.review.services.EstablishmentsService;
 
-@Path("/establishment")
+@Path("/establishments")
 public class EstablishmentsRest {
 	private final EstablishmentsService establishmentsService;
 
