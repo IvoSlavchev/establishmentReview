@@ -1,10 +1,12 @@
 package org.elsysbg.ip.review.services;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import org.elsysbg.ip.review.entities.Establishment;
 import org.elsysbg.ip.review.helpers.PasswordHasher;
@@ -55,6 +57,17 @@ public class EstablishmentsService {
 			} catch (NoSuchAlgorithmException e) {
 	        	e.printStackTrace();
 	        }
+		} finally {
+			em.close();
+		}
+	}
+	
+	public List<Establishment> getEstablishments() {
+		final EntityManager em = entityManagerService.createEntityManager();
+		try {
+			final TypedQuery<Establishment> query =
+				em.createNamedQuery(Establishment.QUERY_ALL, Establishment.class);
+			return query.getResultList();
 		} finally {
 			em.close();
 		}
