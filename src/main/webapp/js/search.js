@@ -27,12 +27,12 @@ $(document).ready(function() {
 	}
 	
 	function addItemToList(item) {
-		var newItem = $("<div />");
-		newItem.addClass("list-group-item");
+		var newItem = $("<a />");
+		newItem.attr("href", "/establishmentReview/persons/view.html?id=" + item[0]);
+		newItem.addClass("list-group-item list-group-item-warning");
 		var newHeader = $("<h4 />");
 		newHeader.text(item[1]);
 		newHeader.addClass("list-group-item-heading");
-		newHeader.attr("data-task-id", item[0]);
 		var newAddress = $("<p />");
 		newAddress.text(item[2]);
 		newAddress.addClass("list-group-item-description");
@@ -48,7 +48,7 @@ $(document).ready(function() {
 		return getEstablishments().then(function(response) {
 			$("#establishmentsList").html("");
 			_.forEach(response, filterItems);
-			if (!$("#establishmentsList div").length) {
+			if (!$("#establishmentsList a").length) {
 				var newItem = $("<li />");
 				newItem.text("No results found!");
 				$("#establishmentsList").append(newItem);
