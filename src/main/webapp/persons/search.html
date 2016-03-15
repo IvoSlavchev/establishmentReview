@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title>Search</title>
 		<link rel="stylesheet" href="../libs/bootstrap-3.3.6-dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="../stylesheets/base.css" />
 	</head>
 	<body>
 		<div class="container">
@@ -21,9 +22,12 @@
 				  	<option value="cinema">Cinema</option>
 				  	<option value="other">Other</option>
 				</select>
+				<button class="btn btn-warning" id="search" type="button">Search</button>
+				<a href="dashboard.html" class="btn btn-default">Cancel</a>
 			</form>
 			<br>
-			<ul class="list-group" id="establishmentsList" style="width: 50%;">
+			<ul class="list-group" id="establishmentsList" style="width: 50%;
+				margin-left: auto; margin-right: auto;">
 			</ul>
 		</div>
 		<script type="text/javascript" src="../libs/jquery-2.2.1.js"></script>

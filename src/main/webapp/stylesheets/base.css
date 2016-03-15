@@ -9,11 +9,11 @@
 	margin-right:auto;
 }
 
-label, select {
+label, .row select {
 	margin-top: 2%;
 }
 
-button, a {
+.row button, .row a {
 	margin-top: 3%;
 }
 

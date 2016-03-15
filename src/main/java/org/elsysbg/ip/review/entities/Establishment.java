@@ -13,8 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Establishment.findByUsername",
-			query = "SELECT e FROM Establishment e WHERE e.username = :username"),
-	@NamedQuery(name=Establishment.QUERY_ALL, query = "SELECT e from Establishment e")
+		query = "SELECT e FROM Establishment e WHERE e.username = :username"),
+	@NamedQuery(name=Establishment.QUERY_ALL,
+		query = "SELECT e.id, e.name, e.address, e.type FROM Establishment e")
 })
 public class Establishment {
 	public static final String QUERY_ALL = "establishmentsAll";
