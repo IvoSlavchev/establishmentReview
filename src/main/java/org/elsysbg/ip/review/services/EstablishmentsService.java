@@ -72,4 +72,17 @@ public class EstablishmentsService {
 			em.close();
 		}
 	}
+	
+	public Establishment getEstablishment(long establishmentId) {
+		final EntityManager em = entityManagerService.createEntityManager();
+		try {
+			final Establishment result = em.find(Establishment.class, establishmentId);
+			if (result == null) {
+				throw new IllegalArgumentException("No establishment with id: " + establishmentId);
+			}
+			return result;
+		} finally {
+			em.close();
+		}
+	}
 }

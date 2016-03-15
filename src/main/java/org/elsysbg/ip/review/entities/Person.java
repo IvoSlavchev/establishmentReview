@@ -12,7 +12,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Person.findByUsername", query = "SELECT p FROM Person p WHERE p.username = :username")
+	@NamedQuery(name = "Person.findByUsername",
+			query = "SELECT p FROM Person p WHERE p.username = :username")
 })
 public class Person {
 	
