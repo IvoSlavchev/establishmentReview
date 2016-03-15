@@ -2,12 +2,21 @@ $(document).ready(function() {
 	"use strict";
 	
 	var ENDPOINT = "http://localhost:8080/establishmentReview/api/establishments";
+	var name = "";
+	var address = "";
 	
 	function getEstablishments() {
 		return $.ajax(ENDPOINT, {
 			method: "GET",
 			dataType: "json"
 		});
+	}
+	
+	function filterEstablishments(establishment) {
+		if ((name === "" || establishment[1].toUpperCase().indexOf(name.toUpperCase()) > -1) &&
+			(address === "" || establishment[2].toUpperCase().indexOf(address.toUpperCase()) > -1)) {
+			addItemToList(establishment);
+		}
 	}
 	
 	function addItemToList(item) {
@@ -28,14 +37,9 @@ $(document).ready(function() {
 		$("#establishmentsList").append(newItem);
 	}
 	
-	function reloadList(name) {
+	
+	function reloadList() {
 		return getEstablishments().then(function(response) {
-			function filterEstablishments(establishment) {
-				if (name == null || name === "" ||
-					establishment[1].toUpperCase().indexOf(name.toUpperCase()) > -1) {
-					addItemToList(establishment);				
-				}
-			}
 			$("#establishmentsList").html("");
 			_.forEach(response, filterEstablishments);
 			if (!$("#establishmentsList div").length) {
@@ -47,7 +51,8 @@ $(document).ready(function() {
 	}
 
 	$("#search").click(function() {
-		var name = $("[name='name']").val();
-		reloadList(name);	
+		name = $("[name='name']").val();
+		address = $("[name='address']").val();
+		reloadList();	
 	});
 });
