@@ -33,24 +33,24 @@ public class Establishment {
 	@Column(nullable = false)
 	private String email;
 	
-	@Column()
+	@Column
 	private String name;
 	
-	@Column()
+	@Column
 	private String telephone;
 	
-	@Column()
+	@Column
 	private String address;
 	
-	@Column()
+	@Column
 	private String type;
 	
-	@Column()
+	@Column
 	private String description;
 	
 	@Column(nullable = false)
 	private String salt;
-
+	
 	public long getId() {
 		return id;
 	}

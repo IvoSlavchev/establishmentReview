@@ -32,7 +32,7 @@ public class Person {
 	
 	@Column(nullable = false)
 	private String salt;
-
+	
 	public long getId() {
 		return id;
 	}

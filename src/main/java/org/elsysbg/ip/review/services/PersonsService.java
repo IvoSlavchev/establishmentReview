@@ -43,11 +43,12 @@ public class PersonsService {
 	public Person loginPerson(Person person) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
-			final Person fromDb = (Person) em.createNamedQuery("Person.findByUsername").setParameter("username",
-					person.getUsername()).getSingleResult();
+			final Person fromDb = (Person) em.createNamedQuery("Person.findByUsername")
+					.setParameter("username", person.getUsername()).getSingleResult();
 			final PasswordHasher ph = new PasswordHasher();
 			try {
-				final String enteredPassword = ph.getSecurePassword(person.getPassword(), fromDb.getSalt());
+				final String enteredPassword = ph.getSecurePassword(person.getPassword(),
+						fromDb.getSalt());
 				if (!enteredPassword.equals(fromDb.getPassword())) {
 					throw new SecurityException();
 				}
