@@ -17,11 +17,8 @@ $(document).ready(function() {
 			error: function() {
 				listError("Username or password incorrect!");
 			},
-			success: function() {
-				var now = new Date();
-				now.setTime(now.getTime() + 3600 * 1000);
-				document.cookie = "session=" + type + ":" + obj.username + 
-					"; expires=" + now.toGMTString() + ";";
+			success: function(response) {
+				document.cookie = "session=" + response.id + ";";
 				window.location = "http://localhost:8080/establishmentReview/" + type + "/dashboard.html";
 			}
 		});

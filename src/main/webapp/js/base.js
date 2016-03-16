@@ -12,6 +12,25 @@ function listError(text) {
 	$("#errors").append("<li>" + text + "</li>");
 }
 
+function getEndpoint(ENDPOINT, id) {
+	return ENDPOINT + "/" + id;
+}
+
+function getCookie(name) {
+    var name = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+        	c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+        	return c.substring(name.length,c.length);
+        }
+    }
+    return "";
+}
+
 function sendSignup(obj, ENDPOINT) {
 	if (!isEmpty(obj)) {
 		if (isEmail(obj.email)) {	

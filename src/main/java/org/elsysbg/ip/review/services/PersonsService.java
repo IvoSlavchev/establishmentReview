@@ -40,7 +40,7 @@ public class PersonsService {
 		}
 	}
 	
-	public void loginPerson(Person person) {
+	public Person loginPerson(Person person) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
 			final Person fromDb = (Person) em.createNamedQuery("Person.findByUsername").setParameter("username",
@@ -54,6 +54,7 @@ public class PersonsService {
 			} catch (NoSuchAlgorithmException e) {
 	        	e.printStackTrace();
 	        }
+			return fromDb;
 		} finally {
 			em.close();
 		}

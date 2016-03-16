@@ -55,6 +55,8 @@ $(document).ready(function() {
 		});
 	}
 
+	reloadList();
+	
 	$("#search").click(function() {
 		name = $("[name='name']").val();
 		address = $("[name='address']").val();

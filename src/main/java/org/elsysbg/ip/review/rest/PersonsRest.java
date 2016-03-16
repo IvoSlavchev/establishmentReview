@@ -31,7 +31,7 @@ public class PersonsRest {
 	@Path("/login")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public void loginPerson(Person person) {
-		personsService.loginPerson(person);
+	public Person loginPerson(Person person) {
+		return personsService.loginPerson(person);
 	}
 }

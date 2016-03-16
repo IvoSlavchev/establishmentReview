@@ -43,7 +43,7 @@ public class EstablishmentsService {
 		}
 	}
 	
-	public void loginEstablishment(Establishment establishment) {
+	public Establishment loginEstablishment(Establishment establishment) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
 			final Establishment fromDb = (Establishment) em.createNamedQuery("Establishment.findByUsername")
@@ -53,10 +53,11 @@ public class EstablishmentsService {
 				final String enteredPassword = ph.getSecurePassword(establishment.getPassword(), fromDb.getSalt());
 				if (!enteredPassword.equals(fromDb.getPassword())) {
 					throw new SecurityException();
-				}
+				}	
 			} catch (NoSuchAlgorithmException e) {
 	        	e.printStackTrace();
 	        }
+			return fromDb;
 		} finally {
 			em.close();
 		}
@@ -82,6 +83,21 @@ public class EstablishmentsService {
 			}
 			return result;
 		} finally {
+			em.close();
+		}
+	}
+	
+	public Establishment updateEstablishment(Establishment establishment) {
+		final EntityManager em = entityManagerService.createEntityManager();
+		try {
+			em.getTransaction().begin();
+			final Establishment result = em.merge(establishment);
+			em.getTransaction().commit();
+			return result;
+		} finally {
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
 			em.close();
 		}
 	}

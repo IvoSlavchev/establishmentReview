@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -35,8 +36,8 @@ public class EstablishmentsRest {
 	@Path("/login")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public void loginEstablishment(Establishment establishment) {
-		establishmentsService.loginEstablishment(establishment);
+	public Establishment loginEstablishment(Establishment establishment) {
+		return establishmentsService.loginEstablishment(establishment);
 	}
 	
 	@GET
@@ -50,5 +51,21 @@ public class EstablishmentsRest {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Establishment getEstablishment(@PathParam("establishmentId") long establishmentId) {
 		return establishmentsService.getEstablishment(establishmentId);
+	}
+	
+	@PUT
+	@Path("/{establishmentId}")
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public Establishment updateTask(@PathParam("establishmentId") long establishmentId,
+			Establishment establishment) {
+		final Establishment fromDb = establishmentsService.getEstablishment(establishmentId);
+		fromDb.setName(establishment.getName());
+		fromDb.setEmail(establishment.getEmail());
+		fromDb.setTelephone(establishment.getTelephone());
+		fromDb.setAddress(establishment.getAddress());
+		fromDb.setType(establishment.getType());
+		fromDb.setDescription(establishment.getDescription());
+		return establishmentsService.updateEstablishment(fromDb);
 	}
 }

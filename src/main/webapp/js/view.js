@@ -3,10 +3,6 @@ $(document).ready(function() {
 	
 	var ENDPOINT = "http://localhost:8080/establishmentReview/api/establishments";
 	
-	function establishmentEndpoint(establishmentId) {
-		return ENDPOINT + "/" + establishmentId;
-	}
-	
 	function getQueryId() {
 		var query = window.location.search.substring(1);
 		var pair = query.split("=");
@@ -14,7 +10,7 @@ $(document).ready(function() {
 	}
 	
 	function getEstablishment(establishmentId) {
-		return $.ajax(establishmentEndpoint(establishmentId), {
+		return $.ajax(getEndpoint(ENDPOINT, establishmentId), {
 			method: "GET",
 			dataType: "json",
 			error: function() {
