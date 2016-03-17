@@ -28,5 +28,35 @@ $(document).ready(function() {
 		$("#description").text(establishment.description);
 	}
 	
+	function clearInput() {
+		$("select option:first").prop("selected", "selected");
+		$("[name='reviewText']").val("");
+	}
+	
+	function createReview() {
+		console.log($("select").val());
+		console.log($("[name='reviewText']").val());
+	}
+	
+	function attachHandlers() {
+		$("#review").click(function() {
+			clearInput();
+			$("#addReview").show();
+			$("#review").hide();
+		})
+		
+		$("#cancel").click(function() {
+			$("#addReview").hide();
+			$("#review").show();
+		});
+		
+		$("#save").click(function() {
+			createReview();
+			$("#addReview").hide();
+			$("#review").show();
+		});
+	}
+	
 	getEstablishment(getQueryId()).then(showEstablishment);
+	attachHandlers();
 });

@@ -9,7 +9,7 @@
 	margin-right: auto;
 }
 
-label, .row select {
+.row label, .row select {
 	margin-top: 2%;
 }
 
@@ -27,4 +27,8 @@ label, .row select {
 	margin-top : 1%;
 	text-align: center;
 	width: 50%;
+}
+
+#addReview {
+	margin-top: 5%;
 }

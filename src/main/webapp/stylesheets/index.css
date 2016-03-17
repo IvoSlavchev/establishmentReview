@@ -13,19 +13,8 @@ body {
 }
 
 
-a {
+a.btn {
 	width: 100%;
 	height: 130%;
-	display: block;
-}
-
-table { 
-	margin-left: auto;
-	margin-right: auto;
-	border-collapse: separate;
-	border-spacing: 10px;
-}
-
-td {
-	width: 150px;
+	margin-bottom: 10%;
 }
