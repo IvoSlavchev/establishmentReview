@@ -1,7 +1,8 @@
 $(document).ready(function() {
 	"use strict";
 	
-	var ENDPOINT = "http://localhost:8080/establishmentReview/api/establishments";
+	var ENDPOINT_EST = "http://localhost:8080/establishmentReview/api/establishments";
+	var ENDPOINT_REV = "http://localhost:8080/establishmentReview/api/reviews";
 	
 	function getQueryId() {
 		var query = window.location.search.substring(1);
@@ -10,7 +11,7 @@ $(document).ready(function() {
 	}
 	
 	function getEstablishment(establishmentId) {
-		return $.ajax(getEndpoint(ENDPOINT, establishmentId), {
+		return $.ajax(getEndpoint(ENDPOINT_EST, establishmentId), {
 			method: "GET",
 			dataType: "json",
 			error: function() {
@@ -30,12 +31,22 @@ $(document).ready(function() {
 	
 	function clearInput() {
 		$("select option:first").prop("selected", "selected");
-		$("[name='reviewText']").val("");
+		$("[name='opinion']").val("");
 	}
 	
 	function createReview() {
-		console.log($("select").val());
-		console.log($("[name='reviewText']").val());
+		var review = {
+			rating: $("select").val(),
+			opinion: $("[name='opinion']").val(),
+			createdOn: new Date()
+		};
+		
+		$.ajax(ENDPOINT_REV + "/" + getCookie("session") + "/" + getQueryId(), {
+			method: "POST",
+			dataType: "json",
+			data: JSON.stringify(review),
+			contentType: "application/json; charset=utf-8"
+		});
 	}
 	
 	function attachHandlers() {

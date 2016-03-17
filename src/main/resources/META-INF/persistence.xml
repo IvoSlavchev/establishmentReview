@@ -7,6 +7,7 @@
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 		<class>org.elsysbg.ip.review.entities.Person</class>
 		<class>org.elsysbg.ip.review.entities.Establishment</class>
+		<class>org.elsysbg.ip.review.entities.Review</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
