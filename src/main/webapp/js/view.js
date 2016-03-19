@@ -49,25 +49,46 @@ $(document).ready(function() {
 		});
 	}
 	
+	function showReviews() {
+		var newItem = $("<div />");
+		newItem.addClass("panel panel-warning col-md-6");
+		var newRating = $("<div />");
+		newRating.addClass("panel-heading");
+		newRating.text("3/5");
+		var newBody = $("<div />");
+		newBody.addClass("panel-body");
+		var newOpinion = $("<p />");
+		newOpinion.text("Decent place. Nice atmosphere, but long waiting times.");
+		var newAuthor = $("<i />");
+		newAuthor.text("Pesho");
+		newBody.append(newOpinion, newAuthor);
+		newItem.append(newRating, newBody);
+		$("#reviews").append(newItem);
+	}
+	
 	function attachHandlers() {
-		$("#review").click(function() {
+		$("#addReview").click(function() {
 			clearInput();
-			$("#addReview").show();
-			$("#review").hide();
+			$("#addReviewPanel").show();
+			$("#addReview").hide();
+			$("#reviews").hide();
 		})
 		
 		$("#cancel").click(function() {
-			$("#addReview").hide();
-			$("#review").show();
+			$("#addReviewPanel").hide();
+			$("#addReview").show();
+			$("#reviews").show();
 		});
 		
 		$("#save").click(function() {
 			createReview();
-			$("#addReview").hide();
-			$("#review").show();
+			$("#addReviewPanel").hide();
+			$("#addReview").show();
+			$("#reviews").show();
 		});
 	}
 	
 	getEstablishment(getQueryId()).then(showEstablishment);
+	showReviews();
 	attachHandlers();
 });

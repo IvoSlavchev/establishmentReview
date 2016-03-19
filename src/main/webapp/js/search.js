@@ -30,16 +30,16 @@ $(document).ready(function() {
 		var newItem = $("<a />");
 		newItem.attr("href", "/establishmentReview/persons/view.html?id=" + item.id);
 		newItem.addClass("list-group-item list-group-item-warning");
-		var newHeader = $("<h4 />");
-		newHeader.text(item.name);
-		newHeader.addClass("list-group-item-heading");
+		var newHeading = $("<h4 />");
+		newHeading.addClass("list-group-item-heading");
+		newHeading.text(item.name);
 		var newAddress = $("<p />");
-		newAddress.text(item.address);
 		newAddress.addClass("list-group-item-description");
+		newAddress.text(item.address);
 		var newType = $("<p />");
-		newType.text(item.type);
 		newType.addClass("list-group-item-description");
-		newItem.append(newHeader, newAddress, newType);
+		newType.text(item.type);
+		newItem.append(newHeading, newAddress, newType);
 		$("#establishmentsList").append(newItem);
 	}
 		

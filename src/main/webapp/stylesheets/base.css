@@ -32,3 +32,8 @@
 #addReview {
 	margin-top: 5%;
 }
+
+[class*=" col-md-"] {
+	padding-right: 0;
+	padding-left: 0;
+}
