@@ -46,7 +46,7 @@ public class EstablishmentsService {
 	public Establishment loginEstablishment(Establishment establishment) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
-			final Establishment fromDb = (Establishment) em.createNamedQuery("Establishment.findByUsername")
+			final Establishment fromDb = (Establishment) em.createNamedQuery(Establishment.QUERY_BY_USERNAME)
 					.setParameter("username", establishment.getUsername()).getSingleResult();
 			final PasswordHasher ph = new PasswordHasher();
 			try {

@@ -12,10 +12,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Person.findByUsername",
+	@NamedQuery(name = Person.QUERY_BY_USERNAME,
 			query = "SELECT p FROM Person p WHERE p.username = :username")
 })
 public class Person {
+	public static final String QUERY_BY_USERNAME = "personsByUsername";
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id

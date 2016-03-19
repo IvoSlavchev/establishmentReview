@@ -1,10 +1,12 @@
 package org.elsysbg.ip.review.services;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import org.elsysbg.ip.review.entities.Establishment;
 import org.elsysbg.ip.review.entities.Person;
@@ -33,6 +35,18 @@ public class ReviewsService {
 			if (em.getTransaction().isActive()) {
 				em.getTransaction().rollback();
 			}
+			em.close();
+		}
+	}
+	
+	public List<Review> getReviewsByEstablishment(Establishment establishment) {
+		final EntityManager em = entityManagerService.createEntityManager();
+		try {
+			final TypedQuery<Review> query =
+				em.createNamedQuery(Review.QUERY_BY_TARGET, Review.class);
+			query.setParameter("target", establishment);
+			return query.getResultList();
+		} finally {
 			em.close();
 		}
 	}

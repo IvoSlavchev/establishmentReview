@@ -13,15 +13,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.elsysbg.ip.review.entities.Establishment;
+import org.elsysbg.ip.review.entities.Review;
 import org.elsysbg.ip.review.services.EstablishmentsService;
+import org.elsysbg.ip.review.services.ReviewsService;
 
 @Path("/establishments")
 public class EstablishmentsRest {
 	private final EstablishmentsService establishmentsService;
+	private final ReviewsService reviewsService;
 
 	@Inject
-	public EstablishmentsRest(EstablishmentsService establishmentsService) {
+	public EstablishmentsRest(EstablishmentsService establishmentsService, ReviewsService reviewsService) {
 		this.establishmentsService = establishmentsService;
+		this.reviewsService = reviewsService;
 	}
 	
 	@POST
@@ -67,5 +71,14 @@ public class EstablishmentsRest {
 		fromDb.setType(establishment.getType());
 		fromDb.setDescription(establishment.getDescription());
 		return establishmentsService.updateEstablishment(fromDb);
+	}
+	
+	@GET
+	@Path("/{establishmentId}/reviews")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public List<Review> getEstablishmentReviews (
+		@PathParam("establishmentId") long establishmentId) {
+		final Establishment establishment = establishmentsService.getEstablishment(establishmentId);
+		return reviewsService.getReviewsByEstablishment(establishment);
 	}
 }

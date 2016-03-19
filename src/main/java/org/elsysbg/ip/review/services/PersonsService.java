@@ -43,7 +43,7 @@ public class PersonsService {
 	public Person loginPerson(Person person) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
-			final Person fromDb = (Person) em.createNamedQuery("Person.findByUsername")
+			final Person fromDb = (Person) em.createNamedQuery(Person.QUERY_BY_USERNAME)
 					.setParameter("username", person.getUsername()).getSingleResult();
 			final PasswordHasher ph = new PasswordHasher();
 			try {
