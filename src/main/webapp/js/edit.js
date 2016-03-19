@@ -34,7 +34,7 @@ $(document).ready(function() {
 	
 	var establishmentId = getCookie("session");
 	
-	getEstablishment(establishmentId).then(populateForm);
+	getEstablishment(getCookie("session")).then(populateForm);
 	
 	$("#save").click(function() {		
 		var establishment = {

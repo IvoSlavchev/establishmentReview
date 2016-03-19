@@ -4,14 +4,28 @@
 		<meta charset="utf-8">
 		<title>Dashboard</title>
 		<link rel="stylesheet" href="../libs/bootstrap-3.3.6-dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="../stylesheets/base.css" />
 	</head>
 	<body>
 		<div class="container">
-			<h1 class="text-center text-warning">Establishment dashboard</h1>
-			<a class="btn btn-warning" id="edit" href="edit.html">Edit information</a>
+			<h1 class="text-center text-warning" id="name"></h1>
+			<div class="col-md-4">
+				<h3 class="text-warning" id="address"></h3>
+				<h3 class="text-warning" id="type"></h3>	
+				<h4 id="email"></h4>
+				<h4 id="telephone"></h4>
+				<p id="description"></p>
+				<ul id="errors"></ul>
+				<a class="btn btn-warning" id="edit" href="edit.html">Edit information</a>
+			</div>
+			
+			<div id="reviews" class="col-md-6"></div>
 			<a class="btn btn-danger" id="logout" href="login.html" style="float: right">Log out</a>
 		</div>
 		<script type="text/javascript" src="../libs/jquery-2.2.1.js"></script>
+		<script type="text/javascript" src="../libs/lodash-4.6.1.js"></script>
+		<script type="text/javascript" src="../js/base.js"></script>
+		<script type="text/javascript" src="../js/establishmentDashboard.js"></script>
 		<script type="text/javascript" src="../js/logout.js"></script>
 	</body>
 </html>
