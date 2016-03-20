@@ -45,10 +45,11 @@ $(document).ready(function() {
 		
 		$("#save").click(function() {
 			createReview();
+			getEstablishment(getQueryId()).then(showEstablishment);
+			getReviews(getQueryId());
 			$("#addReviewPanel").hide();
 			$("#addReview").show();
 			$("#reviews").show();
-			getReviews();
 		});
 	}
 	

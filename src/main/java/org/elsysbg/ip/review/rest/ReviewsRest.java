@@ -9,15 +9,18 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.elsysbg.ip.review.entities.Review;
+import org.elsysbg.ip.review.services.EstablishmentsService;
 import org.elsysbg.ip.review.services.ReviewsService;
 
 @Path("/reviews")
 public class ReviewsRest {
 	private final ReviewsService reviewsService;
+	private final EstablishmentsService establishmentsService;
 
 	@Inject
-	public ReviewsRest(ReviewsService reviewsService) {
+	public ReviewsRest(ReviewsService reviewsService, EstablishmentsService establishmentsService) {
 		this.reviewsService = reviewsService;
+		this.establishmentsService = establishmentsService;
 	}
 	
 	@POST
@@ -26,6 +29,7 @@ public class ReviewsRest {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Review Review(Review review, @PathParam("author") long author,
 			@PathParam("target") long target) {
+		establishmentsService.updateEstablishmentReviewsCountAndRatings(target, review.getRating());
 		return reviewsService.createReview(review, author, target);
 	}
 }

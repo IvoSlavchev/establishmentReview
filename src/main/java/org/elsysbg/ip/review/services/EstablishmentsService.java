@@ -46,11 +46,13 @@ public class EstablishmentsService {
 	public Establishment loginEstablishment(Establishment establishment) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
-			final Establishment fromDb = (Establishment) em.createNamedQuery(Establishment.QUERY_BY_USERNAME)
-					.setParameter("username", establishment.getUsername()).getSingleResult();
+			final Establishment fromDb = (Establishment) em.createNamedQuery(
+					Establishment.QUERY_BY_USERNAME).setParameter("username",
+					establishment.getUsername()).getSingleResult();
 			final PasswordHasher ph = new PasswordHasher();
 			try {
-				final String enteredPassword = ph.getSecurePassword(establishment.getPassword(), fromDb.getSalt());
+				final String enteredPassword = ph.getSecurePassword(establishment.getPassword(),
+						fromDb.getSalt());
 				if (!enteredPassword.equals(fromDb.getPassword())) {
 					throw new SecurityException();
 				}	
@@ -100,5 +102,13 @@ public class EstablishmentsService {
 			}
 			em.close();
 		}
+	}
+	
+	public void updateEstablishmentReviewsCountAndRatings(long establishmentId, int newRating) {
+		final Establishment fromDb = getEstablishment(establishmentId);
+		fromDb.setReviewsCount(fromDb.getReviewsCount() + 1);
+		fromDb.setAllRatings(fromDb.getAllRatings() + newRating);
+		fromDb.setAverageRating(fromDb.getAllRatings() / fromDb.getReviewsCount());
+		updateEstablishment(fromDb);
 	}
 }

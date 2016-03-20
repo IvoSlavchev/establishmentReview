@@ -27,41 +27,41 @@ public class EstablishmentsRest {
 		this.establishmentsService = establishmentsService;
 		this.reviewsService = reviewsService;
 	}
-	
+
 	@POST
 	@Path("/signup")
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Establishment createEstablishment(Establishment establishment) {
 		return establishmentsService.createEstablishment(establishment);
 	}
-	
+
 	@POST
 	@Path("/login")
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Establishment loginEstablishment(Establishment establishment) {
 		return establishmentsService.loginEstablishment(establishment);
 	}
-	
+
 	@GET
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public List<Establishment> getEstablishments() {
 		return establishmentsService.getEstablishments();
 	}
-	
+
 	@GET
 	@Path("/{establishmentId}")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Establishment getEstablishment(@PathParam("establishmentId") long establishmentId) {
 		return establishmentsService.getEstablishment(establishmentId);
 	}
-	
+
 	@PUT
 	@Path("/{establishmentId}")
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Establishment updateTask(@PathParam("establishmentId") long establishmentId,
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Establishment updateEstablishment(@PathParam("establishmentId") long establishmentId,
 			Establishment establishment) {
 		final Establishment fromDb = establishmentsService.getEstablishment(establishmentId);
 		fromDb.setName(establishment.getName());
@@ -72,12 +72,11 @@ public class EstablishmentsRest {
 		fromDb.setDescription(establishment.getDescription());
 		return establishmentsService.updateEstablishment(fromDb);
 	}
-	
+
 	@GET
 	@Path("/{establishmentId}/reviews")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Review> getEstablishmentReviews (
-		@PathParam("establishmentId") long establishmentId) {
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public List<Review> getEstablishmentReviews(@PathParam("establishmentId") long establishmentId) {
 		final Establishment establishment = establishmentsService.getEstablishment(establishmentId);
 		return reviewsService.getReviewsByEstablishment(establishment);
 	}

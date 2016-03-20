@@ -52,6 +52,15 @@ public class Establishment {
 	@Column(nullable = false)
 	private String salt;
 	
+	@Column
+	private int reviewsCount;
+	
+	@Column
+	private int allRatings;
+	
+	@Column
+	private double averageRating;
+	
 	public long getId() {
 		return id;
 	}
@@ -130,5 +139,29 @@ public class Establishment {
 
 	public void setSalt(String salt) {
 		this.salt = salt;
+	}
+
+	public int getReviewsCount() {
+		return reviewsCount;
+	}
+
+	public void setReviewsCount(int reviewsCount) {
+		this.reviewsCount = reviewsCount;
+	}
+
+	public int getAllRatings() {
+		return allRatings;
+	}
+
+	public void setAllRatings(int allRatings) {
+		this.allRatings = allRatings;
+	}
+
+	public double getAverageRating() {
+		return averageRating;
+	}
+
+	public void setAverageRating(double averageRating) {
+		this.averageRating = averageRating;
 	}
 }

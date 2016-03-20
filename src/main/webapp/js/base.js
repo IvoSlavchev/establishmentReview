@@ -68,6 +68,8 @@ function getEstablishment(establishmentId) {
 
 function showEstablishment(establishment) {
 	$("#name").text(establishment.name);
+	$("#rating").text("Average rating is " + establishment.averageRating + " out of 5");
+	$("#reviewCount").text(establishment.reviewsCount + " reviews");
 	$("#address").text(establishment.address);
 	$("#type").text(establishment.type);
 	$("#email").text(establishment.email);
