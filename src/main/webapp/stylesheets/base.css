@@ -42,3 +42,17 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.form-inline div {
+	margin-right: 1%;
+	float: left;
+}
+
+.form-inline div label {
+	display: block;
+}
+
+#establishmentsList {
+	margin-top: 5%;
+	clear: both;
+}

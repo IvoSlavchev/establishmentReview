@@ -6,9 +6,19 @@ $(document).ready(function() {
 	var name = "";
 	var address = "";
 	var type = "All";
+	var rating = 0;
+	var reviewsCount = 0;
 	
 	function contains(string, substring) {
 		return string.toUpperCase().indexOf(substring.toUpperCase()) > -1
+	}
+	
+	function getInput() {
+		name = $("[name='name']").val();
+		address = $("[name='address']").val();
+		type = $("select").val();
+		rating = $("[name='rating']").val();
+		reviewsCount = $("[name='reviewsCount']").val();
 	}
 	
 	function getEstablishments() {
@@ -21,7 +31,8 @@ $(document).ready(function() {
 	function filterItems(item) {
 		if ((name === "" || contains(item.name, name)) &&
 			(address === "" || contains(item.address, address)) && 
-			(type === "All" || contains(item.type, type))) {
+			(type === "All" || contains(item.type, type)) &&
+			item.averageRating >= rating && item.reviewsCount >= reviewsCount) {
 			addItemToList(item);
 		}
 	}
@@ -39,7 +50,13 @@ $(document).ready(function() {
 		var newType = $("<p />");
 		newType.addClass("list-group-item-description");
 		newType.text(item.type);
-		newItem.append(newHeading, newAddress, newType);
+		var newRating = $("<p />");
+		newRating.addClass("list-group-item-description");
+		newRating.text("Average rating of " + item.averageRating);
+		var newReviewCount = $("<p />");
+		newReviewCount.addClass("list-group-item-description");
+		newReviewCount.text(item.reviewsCount + " given reviews");
+		newItem.append(newHeading, newAddress, newType, newRating, newReviewCount);
 		$("#establishmentsList").append(newItem);
 	}
 		
@@ -58,9 +75,7 @@ $(document).ready(function() {
 	reloadList();
 	
 	$("#search").click(function() {
-		name = $("[name='name']").val();
-		address = $("[name='address']").val();
-		type = $("select").val();
+		getInput();
 		reloadList();	
 	});
 });
