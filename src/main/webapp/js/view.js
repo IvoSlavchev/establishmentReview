@@ -25,7 +25,11 @@ $(document).ready(function() {
 			method: "POST",
 			dataType: "json",
 			data: JSON.stringify(review),
-			contentType: "application/json; charset=utf-8"
+			contentType: "application/json; charset=utf-8",
+			success: function() {
+				getEstablishment(getQueryId()).then(showEstablishment);
+				getReviews(getQueryId());
+			}
 		});
 	}
 	
@@ -45,8 +49,6 @@ $(document).ready(function() {
 		
 		$("#save").click(function() {
 			createReview();
-			getEstablishment(getQueryId()).then(showEstablishment);
-			getReviews(getQueryId());
 			$("#addReviewPanel").hide();
 			$("#addReview").show();
 			$("#reviews").show();
