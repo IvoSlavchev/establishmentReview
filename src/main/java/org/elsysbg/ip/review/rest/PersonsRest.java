@@ -20,7 +20,6 @@ public class PersonsRest {
 	}
 	
 	@POST
-	@Path("/signup")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Person createPerson(Person person) {

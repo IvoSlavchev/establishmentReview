@@ -19,7 +19,8 @@ $(document).ready(function() {
 			},
 			success: function(response) {
 				document.cookie = "session=" + response.id + ";path=/establishmentReview/";
-				window.location = "http://localhost:8080/establishmentReview/" + type + "/dashboard.html";
+				window.location = "http://localhost:8080/establishmentReview/" +
+					type + "/dashboard.html";
 			}
 		});
 	});

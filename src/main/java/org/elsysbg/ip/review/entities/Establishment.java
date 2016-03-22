@@ -58,9 +58,6 @@ public class Establishment {
 	@Column
 	private int allRatings;
 	
-	@Column
-	private double averageRating;
-	
 	public long getId() {
 		return id;
 	}
@@ -155,13 +152,5 @@ public class Establishment {
 
 	public void setAllRatings(int allRatings) {
 		this.allRatings = allRatings;
-	}
-
-	public double getAverageRating() {
-		return averageRating;
-	}
-
-	public void setAverageRating(double averageRating) {
-		this.averageRating = averageRating;
 	}
 }

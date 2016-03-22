@@ -108,7 +108,6 @@ public class EstablishmentsService {
 		final Establishment fromDb = getEstablishment(establishmentId);
 		fromDb.setReviewsCount(fromDb.getReviewsCount() + 1);
 		fromDb.setAllRatings(fromDb.getAllRatings() + newRating);
-		fromDb.setAverageRating(fromDb.getAllRatings() / fromDb.getReviewsCount());
 		updateEstablishment(fromDb);
 	}
 }

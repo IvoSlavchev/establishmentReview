@@ -30,9 +30,11 @@ $(document).ready(function() {
 	
 	function filterItems(item) {
 		if ((name === "" || contains(item.name, name)) &&
-			(address === "" || contains(item.address, address)) && 
+			(address === "" || contains(item.address, address)) &&
 			(type === "All" || contains(item.type, type)) &&
-			item.averageRating >= rating && item.reviewsCount >= reviewsCount) {
+			((item.allRatings / item.reviewsCount) >= rating ||
+					item.reviewsCount == 0 && rating == 0) &&
+					item.reviewsCount >= reviewsCount) {
 			addItemToList(item);
 		}
 	}
@@ -52,10 +54,14 @@ $(document).ready(function() {
 		newType.text(item.type);
 		var newRating = $("<p />");
 		newRating.addClass("list-group-item-description");
-		newRating.text("Average rating of " + item.averageRating);
-		var newReviewCount = $("<p />");
-		newReviewCount.addClass("list-group-item-description");
-		newReviewCount.text(item.reviewsCount + " given reviews");
+		if (item.reviewsCount == 0) {
+			newRating.text("No reviews given")
+		} else {
+			newRating.text("Average rating of " + (item.allRatings / item.reviewsCount).toFixed(2));
+			var newReviewCount = $("<p />");
+			newReviewCount.addClass("list-group-item-description");
+			newReviewCount.text(item.reviewsCount + " given reviews");
+		}
 		newItem.append(newHeading, newAddress, newType, newRating, newReviewCount);
 		$("#establishmentsList").append(newItem);
 	}

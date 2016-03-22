@@ -29,7 +29,6 @@ public class EstablishmentsRest {
 	}
 
 	@POST
-	@Path("/signup")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Establishment createEstablishment(Establishment establishment) {

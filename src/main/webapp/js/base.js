@@ -68,13 +68,18 @@ function getEstablishment(establishmentId) {
 
 function showEstablishment(establishment) {
 	$("#name").text(establishment.name);
-	$("#rating").text("Average rating of " + establishment.averageRating + " out of 5");
-	$("#reviewCount").text(establishment.reviewsCount + " reviews");
 	$("#address").text(establishment.address);
 	$("#type").text(establishment.type);
 	$("#email").text(establishment.email);
 	$("#telephone").text(establishment.telephone);
 	$("#description").text(establishment.description);
+	if (establishment.reviewsCount == 0) {
+		$("#rating").text("No reviews");
+	} else {
+		$("#rating").text("Average rating of " + 
+				(establishment.allRatings / establishment.reviewsCount).toFixed(2) + " out of 5");
+		$("#reviewCount").text(establishment.reviewsCount + " reviews");
+	}
 }
 
 function getReviewsByEstablishment(establishmentId) {
