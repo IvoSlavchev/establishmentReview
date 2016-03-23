@@ -9,11 +9,7 @@
 	margin-right: auto;
 }
 
-.row label, .row select {
-	margin-top: 2%;
-}
-
-.row button, .row a {
+input, select, textarea, form button, form a {
 	margin-top: 3%;
 }
 
@@ -55,4 +51,40 @@
 #establishmentsList {
 	margin-top: 5%;
 	clear: both;
+}
+
+.breadcrumb {
+	padding: 8px 15px;
+	list-style: none;
+	background-color: #fcf8e3;
+	border: 1px solid;
+	border-color: #faebcc; 
+}
+
+.breadcrumb li a {
+	font-size: 16px;
+	color: #8a6d3b;
+}
+
+.breadcrumb li.active {
+	font-size: 16px;
+	color: gray;
+}
+
+.breadcrumb > li + li:before {
+	padding: 0 5px;
+	color: gray;
+	content: "\276F";
+}
+
+.breadcrumb li:last-child a {
+	float: right;
+}
+
+#logout {
+	float: right;
+	margin-right: 2%;
+	margin-top: -50px;
+	color: gray;
+	font-size: 16px;
 }

@@ -7,6 +7,10 @@
 		<link rel="stylesheet" href="../stylesheets/base.css" />
 	</head>
 	<body>
+		<ul class="breadcrumb">
+		  <li class="active">Dashboard</li>
+		</ul>
+		<a id="logout" href="login.html">Log out</a>
 		<div class="container">
 			<h1 class="text-center text-warning" id="name"></h1>
 			<div class="col-md-4">
@@ -19,15 +23,12 @@
 				<h4 class="text-warning" id="reviewCount"></h4>
 				<ul id="errors"></ul>
 				<a class="btn btn-warning" id="edit" href="edit.html">Edit information</a>
-			</div>
-			
+			</div>		
 			<div id="reviews" class="col-md-6"></div>
-			<a class="btn btn-danger" id="logout" href="login.html" style="float: right">Log out</a>
 		</div>
 		<script type="text/javascript" src="../libs/jquery-2.2.1.js"></script>
 		<script type="text/javascript" src="../libs/lodash-4.6.1.js"></script>
 		<script type="text/javascript" src="../js/base.js"></script>
 		<script type="text/javascript" src="../js/establishments/dashboard.js"></script>
-		<script type="text/javascript" src="../js/logout.js"></script>
 	</body>
 </html>

@@ -4,14 +4,17 @@
 		<meta charset="utf-8">
 		<title>Dashboard</title>
 		<link rel="stylesheet" href="../libs/bootstrap-3.3.6-dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="../stylesheets/base.css" />
 	</head>
-	<body>
+	<body>	
+		<ul class="breadcrumb">
+			<li class="active">Dashboard</li>
+		</ul>
+		<a id="logout" href="login.html">Log out</a>
 		<div class="container">
 			<h1 class="text-center text-warning">Person dashboard</h1>
-			<a class="btn btn-warning" id="search" href="search.html">Find establishments</a>
-			<a class="btn btn-danger" id="logout" href="login.html" style="float: right;">Log out</a>
+			<a class="btn btn-warning" id="search" href="search.html">Find establishments</a>		
 		</div>
 		<script type="text/javascript" src="../libs/jquery-2.2.1.js"></script>
-		<script type="text/javascript" src="../js/logout.js"></script>
 	</body>
 </html>

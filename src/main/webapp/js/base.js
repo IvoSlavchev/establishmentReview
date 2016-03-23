@@ -61,6 +61,7 @@ function getEstablishment(establishmentId) {
 		method: "GET",
 		dataType: "json",
 		error: function() {
+			$("#addReview").hide();
 			listError("No establishment found!");
 		},
 	});
@@ -113,3 +114,11 @@ function getReviews(establishmentId) {
 		_.forEach(response, addReview);
 	});
 }
+
+$(document).ready(function() {
+	"use strict";
+	
+	$("#logout").click(function() {
+		document.cookie = "session=;path=/establishmentReview/;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+	});
+});
