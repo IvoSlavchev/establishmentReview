@@ -25,10 +25,6 @@ input, select, textarea, form button, form a {
 	width: 50%;
 }
 
-#addReview {
-	margin-top: 5%;
-}
-
 [class*=" col-md-"] {
 	padding-right: 0;
 	padding-left: 0;
@@ -37,6 +33,13 @@ input, select, textarea, form button, form a {
 #reviews {
 	margin-left: auto;
 	margin-right: auto;
+}
+
+#searchLink {
+	margin-left: auto;
+	margin-right:auto;
+	display: block;
+	width: 30%;
 }
 
 .form-inline div {

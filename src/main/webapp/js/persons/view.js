@@ -12,6 +12,7 @@ $(document).ready(function() {
 	function clearInput() {
 		$("select option:first").prop("selected", "selected");
 		$("[name='opinion']").val("");
+		$("[name='question']").val("");
 	}
 	
 	function createReview() {
@@ -37,21 +38,30 @@ $(document).ready(function() {
 		$("#addReview").click(function() {
 			clearInput();
 			$("#addReviewPanel").show();
-			$("#addReview").hide();
-			$("#reviews").hide();
+			$("#addReview, #askQuestion, #reviews").hide();
 		})
 		
-		$("#cancel").click(function() {
-			$("#addReviewPanel").hide();
-			$("#addReview").show();
-			$("#reviews").show();
+		$("#askQuestion").click(function() {
+			clearInput();
+			$("#askQuestionPanel").show();
+			$("#addReview, #askQuestion, #reviews").hide();
+		})
+		
+		$(".cancel").click(function() {
+			$("#addReviewPanel, #askQuestionPanel").hide();
+			$("#addReview, #askQuestion, #reviews").show();
 		});
 		
-		$("#save").click(function() {
+		$("#saveReview").click(function() {
 			createReview();
 			$("#addReviewPanel").hide();
-			$("#addReview").show();
-			$("#reviews").show();
+			$("#addReview, #askQuestion, #reviews").show();
+		});
+		
+		$("#saveQuestion").click(function() {
+			$("#askQuestionPanel").hide();
+			$("#addReview, #askQuestion, #reviews").show();
+			alert($("[name='question']").val());
 		});
 	}
 	
