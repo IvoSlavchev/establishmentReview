@@ -49,9 +49,6 @@ public class Establishment {
 	@Column
 	private String description;
 	
-	@Column(nullable = false)
-	private String salt;
-	
 	@Column
 	private int reviewsCount;
 	
@@ -128,14 +125,6 @@ public class Establishment {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 
 	public int getReviewsCount() {

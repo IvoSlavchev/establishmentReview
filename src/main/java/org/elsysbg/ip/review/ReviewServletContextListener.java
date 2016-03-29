@@ -1,5 +1,6 @@
 package org.elsysbg.ip.review;
 
+import org.elsysbg.ip.review.services.AuthenticationService;
 import org.elsysbg.ip.review.services.EntityManagerService;
 import org.elsysbg.ip.review.services.PersonsService;
 import org.elsysbg.ip.review.services.ReviewsService;
@@ -20,9 +21,10 @@ public class ReviewServletContextListener extends GuiceServletContextListener {
 			injector = Guice.createInjector(new ServletModule() {
 				@Override
 				protected void configureServlets() {
-					bind(PersonsService.class);
-					bind(EstablishmentsService.class);
 					bind(EntityManagerService.class);
+					bind(AuthenticationService.class);
+					bind(PersonsService.class);
+					bind(EstablishmentsService.class);		
 					bind(ReviewsService.class);
 				}
 			});

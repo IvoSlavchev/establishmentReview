@@ -25,12 +25,4 @@ public class PersonsRest {
 	public Person createPerson(Person person) {
 		return personsService.createPerson(person);
 	}
-	
-	@POST
-	@Path("/login")
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Person loginPerson(Person person) {
-		return personsService.loginPerson(person);
-	}
 }

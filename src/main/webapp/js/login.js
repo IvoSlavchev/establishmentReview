@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	"use strict";
 	
-	var ENDPOINT = "http://localhost:8080/establishmentReview/api/" + type + "/login";
+	var ENDPOINT = "http://localhost:8080/establishmentReview/api/authentication/" + type;
 	
 	$("#login").click(function() {
 		var obj = {

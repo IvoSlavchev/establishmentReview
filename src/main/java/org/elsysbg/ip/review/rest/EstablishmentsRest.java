@@ -35,14 +35,6 @@ public class EstablishmentsRest {
 		return establishmentsService.createEstablishment(establishment);
 	}
 
-	@POST
-	@Path("/login")
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Establishment loginEstablishment(Establishment establishment) {
-		return establishmentsService.loginEstablishment(establishment);
-	}
-
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public List<Establishment> getEstablishments() {
