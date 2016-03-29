@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.subject.Subject;
 import org.elsysbg.ip.review.entities.Establishment;
 import org.elsysbg.ip.review.entities.Person;
@@ -26,6 +27,7 @@ public class AuthenticationRest {
 	}
 	
 	@POST
+	@RequiresGuest
 	@Path("/persons")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -36,6 +38,7 @@ public class AuthenticationRest {
 	}
 	
 	@POST
+	@RequiresGuest
 	@Path("/establishments")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

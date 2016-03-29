@@ -7,6 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.elsysbg.ip.review.entities.Person;
 import org.elsysbg.ip.review.services.PersonsService;
 
@@ -20,6 +21,7 @@ public class PersonsRest {
 	}
 	
 	@POST
+	@RequiresGuest
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Person createPerson(Person person) {
