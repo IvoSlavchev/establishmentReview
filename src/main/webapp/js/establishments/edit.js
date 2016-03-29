@@ -3,13 +3,6 @@ $(document).ready(function() {
 	
 	var ENDPOINT = "http://localhost:8080/establishmentReview/api/establishments";
 	
-	function getEstablishment(establishmentId) {
-		return $.ajax(getEndpoint(ENDPOINT, establishmentId), {
-			method: "GET",
-			dataType: "json"
-		});
-	}
-	
 	function updateEstablishment(establishment, establishmentId) {
 		$.ajax(getEndpoint(ENDPOINT, establishmentId), {
 			method: "PUT",
@@ -32,9 +25,11 @@ $(document).ready(function() {
 		$("[name='description']").val(establishment.description);
 	}
 	
-	var establishmentId = getCookie("session");
-	
-	getEstablishment(getCookie("session")).then(populateForm);
+	var currId = 0;
+	getCurrentlyLoggedInEstablishment().success(function(establishment) {
+		  populateForm(establishment);
+		  currId = establishment.id;
+	});
 	
 	$("#save").click(function() {		
 		var establishment = {
@@ -47,7 +42,7 @@ $(document).ready(function() {
 		};
 		
 		if (isEmail(establishment.email)) {	
-			updateEstablishment(establishment, establishmentId);
+			updateEstablishment(establishment, currId);
 		} else {
 			listError(establishment.email + " is not a valid email!");
 		}

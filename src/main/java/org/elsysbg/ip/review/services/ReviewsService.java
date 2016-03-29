@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import org.elsysbg.ip.review.entities.Establishment;
-import org.elsysbg.ip.review.entities.Person;
 import org.elsysbg.ip.review.entities.Review;
 
 @Singleton
@@ -21,12 +20,11 @@ public class ReviewsService {
 		this.entityManagerService = entityManagerService;
 	}
 
-	public Review createReview(Review review, long author, long target) {
+	public Review createReview(Review review, long target) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
 			em.getTransaction().begin();
 			review.setCreatedOn(new Date());
-			review.setAuthor(em.getReference(Person.class, author));
 			review.setTarget(em.getReference(Establishment.class, target));
 			em.persist(review);
 			em.getTransaction().commit();

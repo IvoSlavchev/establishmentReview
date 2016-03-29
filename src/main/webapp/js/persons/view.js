@@ -22,7 +22,7 @@ $(document).ready(function() {
 			createdOn: new Date()
 		};
 		
-		$.ajax(ENDPOINT_REV + "/" + getCookie("session") + "/" + getQueryId(), {
+		$.ajax(getEndpoint(ENDPOINT_REV, getQueryId()), {
 			method: "POST",
 			dataType: "json",
 			data: JSON.stringify(review),
@@ -61,11 +61,9 @@ $(document).ready(function() {
 		$("#saveQuestion").click(function() {
 			$("#askQuestionPanel").hide();
 			$("#addReview, #askQuestion, #reviews").show();
-			alert($("[name='question']").val());
 		});
 	}
 	
 	getEstablishment(getQueryId()).then(showEstablishment);
-	getReviews(getQueryId());
 	attachHandlers();
 });

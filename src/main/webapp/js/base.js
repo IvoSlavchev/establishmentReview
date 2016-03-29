@@ -15,23 +15,15 @@ function listError(text) {
 	$("#errors").append("<li>" + text + "</li>");
 }
 
-function getEndpoint(ENDPOINT, id) {
-	return ENDPOINT + "/" + id;
+function getEndpoint(ENDPOINT, suffix) {
+	return ENDPOINT + "/" + suffix;
 }
 
-function getCookie(name) {
-    var name = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') {
-        	c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-        	return c.substring(name.length,c.length);
-        }
-    }
-    return "";
+function getCurrentlyLoggedInEstablishment() {
+	return $.ajax(getEndpoint(ENDPOINT_AUTH, "establishments"), {
+		method: "GET",
+		dataType: "json"
+	});
 }
 
 function sendSignup(obj, ENDPOINT) {
@@ -46,7 +38,7 @@ function sendSignup(obj, ENDPOINT) {
 					listError(obj.username + " is already taken!");
 				},
 				success: function() {
-					window.location='http://localhost:8080/establishmentReview';
+					window.location = 'http://localhost:8080/establishmentReview';
 				}
 			});
 		} else {
@@ -82,6 +74,7 @@ function showEstablishment(establishment) {
 				(establishment.allRatings / establishment.reviewsCount).toFixed(2) + " out of 5");
 		$("#reviewCount").text(establishment.reviewsCount + " reviews");
 	}
+	getReviews(establishment.id);
 }
 
 function getReviewsByEstablishment(establishmentId) {

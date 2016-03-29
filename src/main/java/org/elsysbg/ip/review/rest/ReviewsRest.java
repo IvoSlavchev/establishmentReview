@@ -8,28 +8,34 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.shiro.subject.Subject;
 import org.elsysbg.ip.review.entities.Review;
+import org.elsysbg.ip.review.services.AuthenticationService;
 import org.elsysbg.ip.review.services.EstablishmentsService;
 import org.elsysbg.ip.review.services.ReviewsService;
+import org.secnod.shiro.jaxrs.Auth;
 
 @Path("/reviews")
 public class ReviewsRest {
 	private final ReviewsService reviewsService;
 	private final EstablishmentsService establishmentsService;
+	private final AuthenticationService authenticationService;
 
 	@Inject
-	public ReviewsRest(ReviewsService reviewsService, EstablishmentsService establishmentsService) {
+	public ReviewsRest(ReviewsService reviewsService, EstablishmentsService establishmentsService,
+			AuthenticationService authenticationService) {
 		this.reviewsService = reviewsService;
 		this.establishmentsService = establishmentsService;
+		this.authenticationService = authenticationService;
 	}
 	
 	@POST
-	@Path("/{author}/{target}")
+	@Path("/{target}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Review Review(Review review, @PathParam("author") long author,
-			@PathParam("target") long target) {
+	public Review Review(@Auth Subject subject, Review review, @PathParam("target") long target) {
+		review.setAuthor(authenticationService.getCurrentlyLoggedInPerson(subject));
 		establishmentsService.updateEstablishmentReviewsCountAndRatings(target, review.getRating());
-		return reviewsService.createReview(review, author, target);
+		return reviewsService.createReview(review, target);
 	}
 }
