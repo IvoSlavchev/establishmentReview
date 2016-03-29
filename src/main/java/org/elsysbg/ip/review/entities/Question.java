@@ -8,30 +8,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Entity
-@NamedQueries({
-	@NamedQuery(name=Review.QUERY_BY_ESTABLISHMENT,
-		query = "SELECT r from Review r WHERE r.establishment=:establishment")
-})
-public class Review {
-	public static final String QUERY_BY_ESTABLISHMENT = "queryByEstablishment";
+public class Question {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long id;
 	
 	@Column(nullable = false)
-	private int rating;
-	
-	@Column
-	private String opinion;
+	private String question;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
@@ -53,20 +43,12 @@ public class Review {
 		this.id = id;
 	}
 
-	public int getRating() {
-		return rating;
+	public String getQuestion() {
+		return question;
 	}
 
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
-
-	public String getOpinion() {
-		return opinion;
-	}
-
-	public void setOpinion(String opinion) {
-		this.opinion = opinion;
+	public void setQuestion(String question) {
+		this.question = question;
 	}
 
 	public Date getCreatedOn() {

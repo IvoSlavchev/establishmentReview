@@ -20,12 +20,12 @@ public class ReviewsService {
 		this.entityManagerService = entityManagerService;
 	}
 
-	public Review createReview(Review review, long target) {
+	public Review createReview(Review review, long establishment) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
 			em.getTransaction().begin();
 			review.setCreatedOn(new Date());
-			review.setTarget(em.getReference(Establishment.class, target));
+			review.setEstablishment(em.getReference(Establishment.class, establishment));
 			em.persist(review);
 			em.getTransaction().commit();
 			return review;
@@ -41,8 +41,8 @@ public class ReviewsService {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
 			final TypedQuery<Review> query =
-				em.createNamedQuery(Review.QUERY_BY_TARGET, Review.class);
-			query.setParameter("target", establishment);
+				em.createNamedQuery(Review.QUERY_BY_ESTABLISHMENT, Review.class);
+			query.setParameter("establishment", establishment);
 			return query.getResultList();
 		} finally {
 			em.close();

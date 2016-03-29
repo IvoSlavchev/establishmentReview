@@ -2,6 +2,7 @@ $(document).ready(function() {
 	"use strict";
 	
 	var ENDPOINT_REV = "http://localhost:8080/establishmentReview/api/reviews";
+	var ENDPOINT_QUEST = "http://localhost:8080/establishmentReview/api/questions";
 	
 	function getQueryId() {
 		var query = window.location.search.substring(1);
@@ -18,8 +19,7 @@ $(document).ready(function() {
 	function createReview() {
 		var review = {
 			rating: $("select").val(),
-			opinion: $("[name='opinion']").val(),
-			createdOn: new Date()
+			opinion: $("[name='opinion']").val()
 		};
 		
 		$.ajax(getEndpoint(ENDPOINT_REV, getQueryId()), {
@@ -30,6 +30,22 @@ $(document).ready(function() {
 			success: function() {
 				getEstablishment(getQueryId()).then(showEstablishment);
 				getReviews(getQueryId());
+			}
+		});
+	}
+	
+	function createQuestion() {
+		var question = {
+			question: $("[name='question']").val()
+		};
+		
+		$.ajax(getEndpoint(ENDPOINT_QUEST, getQueryId()), {
+			method: "POST",
+			dataType: "json",
+			data: JSON.stringify(question),
+			contentType: "application/json; charset=utf-8",
+			success: function() {
+				getEstablishment(getQueryId()).then(showEstablishment);
 			}
 		});
 	}
@@ -59,6 +75,7 @@ $(document).ready(function() {
 		});
 		
 		$("#saveQuestion").click(function() {
+			createQuestion();
 			$("#askQuestionPanel").hide();
 			$("#addReview, #askQuestion, #reviews").show();
 		});

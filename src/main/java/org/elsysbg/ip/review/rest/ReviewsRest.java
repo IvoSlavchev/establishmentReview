@@ -30,12 +30,13 @@ public class ReviewsRest {
 	}
 	
 	@POST
-	@Path("/{target}")
+	@Path("/{establishment}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Review Review(@Auth Subject subject, Review review, @PathParam("target") long target) {
+	public Review createReview(@Auth Subject subject, Review review,
+			@PathParam("establishment") long establishment) {
 		review.setAuthor(authenticationService.getCurrentlyLoggedInPerson(subject));
-		establishmentsService.updateEstablishmentReviewsCountAndRatings(target, review.getRating());
-		return reviewsService.createReview(review, target);
+		establishmentsService.updateEstablishmentReviewsCountAndRatings(establishment, review.getRating());
+		return reviewsService.createReview(review, establishment);
 	}
 }
