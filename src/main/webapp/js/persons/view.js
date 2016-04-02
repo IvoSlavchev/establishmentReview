@@ -28,8 +28,7 @@ $(document).ready(function() {
 			data: JSON.stringify(review),
 			contentType: "application/json; charset=utf-8",
 			success: function() {
-				getEstablishment(getQueryId()).then(showEstablishment);
-				getReviews(getQueryId());
+				reloadReviewsAndQuestions();
 			}
 		});
 	}
@@ -45,8 +44,29 @@ $(document).ready(function() {
 			data: JSON.stringify(question),
 			contentType: "application/json; charset=utf-8",
 			success: function() {
-				getEstablishment(getQueryId()).then(showEstablishment);
+				reloadReviewsAndQuestions();
 			}
+		});
+	}
+	
+	function getQuestionsByAuthorAndEstablishment(personId, establishmentId) {
+		return $.ajax(getEndpoint(ENDPOINT_PER, personId) + "/questions/" + establishmentId, {
+			method: "GET",
+			dataType: "json"
+		});
+	}
+
+	function getQuestions(personId, establishmentId) {
+		return getQuestionsByAuthorAndEstablishment(personId, establishmentId).then(function(response) {
+			$("#questions").html("");
+			_.forEach(response, addQuestion);
+		});
+	}
+	
+	function reloadReviewsAndQuestions() {
+		getEstablishment(getQueryId()).then(showEstablishment);
+		getCurrentlyLoggedInPerson().success(function(person) {
+			getQuestions(person.id, getQueryId());
 		});
 	}
 	
@@ -54,33 +74,33 @@ $(document).ready(function() {
 		$("#addReview").click(function() {
 			clearInput();
 			$("#addReviewPanel").show();
-			$("#addReview, #askQuestion, #reviews, #questions").hide();
+			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").hide();
 		})
 		
 		$("#askQuestion").click(function() {
 			clearInput();
 			$("#askQuestionPanel").show();
-			$("#addReview, #askQuestion, #reviews, #questions").hide();
+			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").hide();
 		})
 		
 		$(".cancel").click(function() {
 			$("#addReviewPanel, #askQuestionPanel").hide();
-			$("#addReview, #askQuestion, #reviews, #questions").show();
+			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").show();
 		});
 		
 		$("#saveReview").click(function() {
 			createReview();
 			$("#addReviewPanel").hide();
-			$("#addReview, #askQuestion, #reviews, #questions").show();
+			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").show();
 		});
 		
 		$("#saveQuestion").click(function() {
 			createQuestion();
 			$("#askQuestionPanel").hide();
-			$("#addReview, #askQuestion, #reviews, #questions").show();
+			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").show();
 		});
 	}
 	
-	getEstablishment(getQueryId()).then(showEstablishment);
+	reloadReviewsAndQuestions();
 	attachHandlers();
 });

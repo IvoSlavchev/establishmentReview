@@ -18,10 +18,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @NamedQueries({
 	@NamedQuery(name=Question.QUERY_QUESTION_BY_ESTABLISHMENT,
-		query = "SELECT q from Question q WHERE q.establishment=:establishment")
+		query = "SELECT q from Question q WHERE q.establishment=:establishment"),
+	@NamedQuery(name=Question.QUERY_QUESTION_BY_AUTHOR_AND_ESTABLISHMENT,
+		query = "SELECT q from Question q WHERE q.author=:author AND q.establishment=:establishment")
 })
 public class Question {
 	public static final String QUERY_QUESTION_BY_ESTABLISHMENT = "queryQuestionByEstablishment";
+	public static final String QUERY_QUESTION_BY_AUTHOR_AND_ESTABLISHMENT = "queryQuestionByAuthorAndEstablishment";
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id

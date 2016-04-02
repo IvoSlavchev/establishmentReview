@@ -1,3 +1,4 @@
+var ENDPOINT_PER = "http://localhost:8080/establishmentReview/api/persons";
 var ENDPOINT_EST = "http://localhost:8080/establishmentReview/api/establishments";
 var ENDPOINT_AUTH = "http://localhost:8080/establishmentReview/api/authentication";
 
@@ -17,6 +18,13 @@ function listError(text) {
 
 function getEndpoint(ENDPOINT, suffix) {
 	return ENDPOINT + "/" + suffix;
+}
+
+function getCurrentlyLoggedInPerson() {
+	return $.ajax(getEndpoint(ENDPOINT_AUTH, "persons"), {
+		method: "GET",
+		dataType: "json"
+	});
 }
 
 function getCurrentlyLoggedInEstablishment() {
@@ -107,6 +115,31 @@ function getReviews(establishmentId) {
 		$("#reviews").html("");
 		_.forEach(response, addReview);
 	});
+}
+
+function addQuestion(question) {
+	var newItem = $("<div />");
+	newItem.addClass("panel panel-danger");
+	var newHeading = $("<div />");
+	newHeading.addClass("panel-heading");
+	newHeading.text("Question for " + question.establishment.name);
+	var newBody = $("<div />");
+	newBody.addClass("panel-body");
+	var newQuestion = $("<p />");
+	newQuestion.text(question.question);
+	var newAuthor = $("<i />");
+	var date = new Date(question.createdOn);
+	newAuthor.text("- " + question.author.username + ", " + date.toString().slice(0, 21));
+	var newStatus = $("<br><i />");
+	if (question.answered) {
+		newStatus.text("Answered");
+	} else {
+		newStatus.text("Unanswered");
+	}
+	newStatus.text("Unanswered");
+	newBody.append(newQuestion, newAuthor, newStatus);
+	newItem.append(newHeading, newBody);
+	$("#questions").append(newItem);
 }
 
 $(document).ready(function() {

@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import org.elsysbg.ip.review.entities.Establishment;
+import org.elsysbg.ip.review.entities.Person;
 import org.elsysbg.ip.review.entities.Question;
 
 @Singleton
@@ -42,6 +43,19 @@ public class QuestionsService {
 		try {
 			final TypedQuery<Question> query =
 				em.createNamedQuery(Question.QUERY_QUESTION_BY_ESTABLISHMENT, Question.class);
+			query.setParameter("establishment", establishment);
+			return query.getResultList();
+		} finally {
+			em.close();
+		}
+	}
+	
+	public List<Question> getQuestionsByAuthorAndEstablishment(Person person, Establishment establishment) {
+		final EntityManager em = entityManagerService.createEntityManager();
+		try {
+			final TypedQuery<Question> query =
+				em.createNamedQuery(Question.QUERY_QUESTION_BY_AUTHOR_AND_ESTABLISHMENT, Question.class);
+			query.setParameter("author", person);
 			query.setParameter("establishment", establishment);
 			return query.getResultList();
 		} finally {
