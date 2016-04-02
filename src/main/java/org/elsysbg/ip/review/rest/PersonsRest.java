@@ -42,6 +42,14 @@ public class PersonsRest {
 	}
 	
 	@GET
+	@Path("/{personId}/questions")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public List<Question> getAuthorQuestions(@PathParam("personId") long personId) {
+		final Person person = personsService.getPerson(personId);
+		return questionsService.getQuestionsByAuthor(person);
+	}
+	
+	@GET
 	@Path("/{personId}/questions/{establishmentId}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<Question> getQuestionsByAuthorAndEstablishment(@PathParam("personId") long personId,

@@ -38,6 +38,18 @@ public class QuestionsService {
 		}
 	}
 	
+	public List<Question> getQuestionsByAuthor(Person person) {
+		final EntityManager em = entityManagerService.createEntityManager();
+		try {
+			final TypedQuery<Question> query =
+				em.createNamedQuery(Question.QUERY_QUESTION_BY_AUTHOR, Question.class);
+			query.setParameter("author", person);
+			return query.getResultList();
+		} finally {
+			em.close();
+		}
+	}
+	
 	public List<Question> getQuestionsByEstablishment(Establishment establishment) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
