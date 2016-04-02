@@ -1,15 +1,15 @@
 $(document).ready(function() {
 	"use strict";
 	
-	function getQuestionsByEstablishment(establishmentId) {
-		return $.ajax(getEndpoint(ENDPOINT_EST, establishmentId) + "/questions", {
+	function getQuestionsByEstablishment() {
+		return $.ajax(getEndpoint(ENDPOINT_EST, "questions"), {
 			method: "GET",
 			dataType: "json"
 		});
 	}
 
-	function getQuestions(establishmentId) {
-		return getQuestionsByEstablishment(establishmentId).then(function(response) {
+	function getQuestions() {
+		return getQuestionsByEstablishment().then(function(response) {
 			$("#questions").html("");
 			_.forEach(response, addQuestion);
 		});
@@ -17,6 +17,7 @@ $(document).ready(function() {
 	
 	getCurrentlyLoggedInEstablishment().success(function(establishment) {
 		showEstablishment(establishment);
-		getQuestions(establishment.id);
+		getReviews(establishment.id);
+		getQuestions();
 	});
 });

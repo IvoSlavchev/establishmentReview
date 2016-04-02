@@ -13,23 +13,28 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.shiro.authz.annotation.RequiresGuest;
+import org.apache.shiro.subject.Subject;
 import org.elsysbg.ip.review.entities.Establishment;
 import org.elsysbg.ip.review.entities.Question;
 import org.elsysbg.ip.review.entities.Review;
+import org.elsysbg.ip.review.services.AuthenticationService;
 import org.elsysbg.ip.review.services.EstablishmentsService;
 import org.elsysbg.ip.review.services.QuestionsService;
 import org.elsysbg.ip.review.services.ReviewsService;
+import org.secnod.shiro.jaxrs.Auth;
 
 @Path("/establishments")
 public class EstablishmentsRest {
 	private final EstablishmentsService establishmentsService;
+	private final AuthenticationService authenticationService;
 	private final ReviewsService reviewsService;
 	private final QuestionsService questionsService;
 
 	@Inject
-	public EstablishmentsRest(EstablishmentsService establishmentsService, ReviewsService reviewsService,
-			QuestionsService questionsService) {
+	public EstablishmentsRest(EstablishmentsService establishmentsService, AuthenticationService authenticationService,
+			ReviewsService reviewsService, QuestionsService questionsService) {
 		this.establishmentsService = establishmentsService;
+		this.authenticationService = authenticationService;
 		this.reviewsService = reviewsService;
 		this.questionsService = questionsService;
 	}
@@ -56,12 +61,11 @@ public class EstablishmentsRest {
 	}
 
 	@PUT
-	@Path("/{establishmentId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Establishment updateEstablishment(@PathParam("establishmentId") long establishmentId,
+	public Establishment updateEstablishment(@Auth Subject subject,
 			Establishment establishment) {
-		final Establishment fromDb = establishmentsService.getEstablishment(establishmentId);
+		final Establishment fromDb = authenticationService.getCurrentlyLoggedInEstablishment(subject);
 		fromDb.setName(establishment.getName());
 		fromDb.setEmail(establishment.getEmail());
 		fromDb.setTelephone(establishment.getTelephone());
@@ -80,10 +84,10 @@ public class EstablishmentsRest {
 	}
 	
 	@GET
-	@Path("/{establishmentId}/questions")
+	@Path("/questions")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Question> getEstablishmentQuestions(@PathParam("establishmentId") long establishmentId) {
-		final Establishment establishment = establishmentsService.getEstablishment(establishmentId);
+	public List<Question> getEstablishmentQuestions(@Auth Subject subject) {
+		final Establishment establishment = authenticationService.getCurrentlyLoggedInEstablishment(subject);
 		return questionsService.getQuestionsByEstablishment(establishment);
 	}
 }

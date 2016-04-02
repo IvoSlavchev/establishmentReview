@@ -82,7 +82,6 @@ function showEstablishment(establishment) {
 				(establishment.allRatings / establishment.reviewsCount).toFixed(2) + " out of 5");
 		$("#reviewCount").text(establishment.reviewsCount + " reviews");
 	}
-	getReviews(establishment.id);
 }
 
 function getReviewsByEstablishment(establishmentId) {

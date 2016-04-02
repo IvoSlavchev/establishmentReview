@@ -22,7 +22,7 @@ $(document).ready(function() {
 			opinion: $("[name='opinion']").val()
 		};
 		
-		$.ajax(getEndpoint(ENDPOINT_REV, getQueryId()), {
+		$.ajax(getEndpoint(ENDPOINT_REV, establishmentId), {
 			method: "POST",
 			dataType: "json",
 			data: JSON.stringify(review),
@@ -38,7 +38,7 @@ $(document).ready(function() {
 			question: $("[name='question']").val()
 		};
 		
-		$.ajax(getEndpoint(ENDPOINT_QUEST, getQueryId()), {
+		$.ajax(getEndpoint(ENDPOINT_QUEST, establishmentId), {
 			method: "POST",
 			dataType: "json",
 			data: JSON.stringify(question),
@@ -49,28 +49,29 @@ $(document).ready(function() {
 		});
 	}
 	
-	function getQuestionsByAuthorAndEstablishment(personId, establishmentId) {
-		return $.ajax(getEndpoint(ENDPOINT_PER, personId) + "/questions/" + establishmentId, {
+	function getQuestionsByAuthorAndEstablishment() {
+		return $.ajax(getEndpoint(ENDPOINT_PER, "questions/") + establishmentId, {
 			method: "GET",
 			dataType: "json"
 		});
 	}
 
-	function getQuestions(personId, establishmentId) {
-		return getQuestionsByAuthorAndEstablishment(personId, establishmentId).then(function(response) {
+	function getQuestions() {
+		return getQuestionsByAuthorAndEstablishment().then(function(response) {
 			$("#questions").html("");
 			_.forEach(response, addQuestion);
 		});
 	}
 	
 	function reloadReviewsAndQuestions() {
-		getEstablishment(getQueryId()).then(showEstablishment);
-		getCurrentlyLoggedInPerson().success(function(person) {
-			getQuestions(person.id, getQueryId());
-		});
+		getReviews(establishmentId);
+		getQuestions();
 	}
 	
 	function attachHandlers() {
+		$("#addFavourite").click(function() {
+		})
+		
 		$("#addReview").click(function() {
 			clearInput();
 			$("#addReviewPanel").show();
@@ -101,6 +102,12 @@ $(document).ready(function() {
 		});
 	}
 	
-	reloadReviewsAndQuestions();
-	attachHandlers();
+	var personId = 0;
+	var establishmentId = getQueryId();
+	getEstablishment(establishmentId).then(showEstablishment);
+	getCurrentlyLoggedInPerson().success(function(person) {
+		personId = person.id;
+		reloadReviewsAndQuestions();
+		attachHandlers();
+	});
 });

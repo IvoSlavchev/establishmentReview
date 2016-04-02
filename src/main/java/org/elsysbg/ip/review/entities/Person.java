@@ -1,13 +1,20 @@
 package org.elsysbg.ip.review.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.elsysbg.ip.review.entities.Establishment;
 
 @XmlRootElement
 @Entity
@@ -30,6 +37,12 @@ public class Person {
 	
 	@Column(nullable = false)
 	private String email;
+	
+	@ManyToMany
+	@JoinTable(name="person_establishment",
+		joinColumns=@JoinColumn(name="person_id", referencedColumnName="id"),
+		inverseJoinColumns=@JoinColumn(name="establishment_id", referencedColumnName="id"))
+	private List<Establishment> favourites;
 	
 	public long getId() {
 		return id;

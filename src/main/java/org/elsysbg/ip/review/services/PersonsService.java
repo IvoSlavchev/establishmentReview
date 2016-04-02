@@ -36,19 +36,6 @@ public class PersonsService {
 		}
 	}
 	
-	public Person getPerson(long personId) {
-		final EntityManager em = entityManagerService.createEntityManager();
-		try {
-			final Person result = em.find(Person.class, personId);
-			if (result == null) {
-				throw new IllegalArgumentException("No person with id: " + personId);
-			}
-			return result;
-		} finally {
-			em.close();
-		}
-	}
-	
 	public Person getPersonByUsername(String username) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {

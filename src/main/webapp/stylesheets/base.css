@@ -86,8 +86,14 @@ input, select, textarea, form button, form a {
 
 #logout {
 	float: right;
-	margin-right: 2%;
+	margin-right: 1%;
 	margin-top: -50px;
 	color: gray;
 	font-size: 16px;
+}
+
+#addFavourite {
+	float: right;
+	margin-right: 1%;
+	margin-top: 2%;
 }

@@ -1,15 +1,15 @@
 $(document).ready(function() {
 	"use strict";
 	
-	function getQuestionsByAuthor(personId) {
-		return $.ajax(getEndpoint(ENDPOINT_PER, personId) + "/questions", {
+	function getQuestionsByAuthor() {
+		return $.ajax(getEndpoint(ENDPOINT_PER, "questions"), {
 			method: "GET",
 			dataType: "json"
 		});
 	}
 
-	function getQuestions(personId) {
-		return getQuestionsByAuthor(personId).then(function(response) {
+	function getQuestions() {
+		return getQuestionsByAuthor().then(function(response) {
 			$("#questions").html("");
 			_.forEach(response, addQuestion);
 		});
@@ -17,6 +17,6 @@ $(document).ready(function() {
 	
 	getCurrentlyLoggedInPerson().success(function(person) {
 		$("#welcome").text("Welcome, " + person.username);
-		getQuestions(person.id);
+		getQuestions();
 	});
 });

@@ -12,24 +12,29 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.shiro.authz.annotation.RequiresGuest;
+import org.apache.shiro.subject.Subject;
 import org.elsysbg.ip.review.entities.Establishment;
 import org.elsysbg.ip.review.entities.Person;
 import org.elsysbg.ip.review.entities.Question;
+import org.elsysbg.ip.review.services.AuthenticationService;
 import org.elsysbg.ip.review.services.EstablishmentsService;
 import org.elsysbg.ip.review.services.PersonsService;
 import org.elsysbg.ip.review.services.QuestionsService;
+import org.secnod.shiro.jaxrs.Auth;
 
 @Path("/persons")
 public class PersonsRest {
 	private final PersonsService personsService;
 	private final EstablishmentsService establishmentsService;
+	private final AuthenticationService authenticationService;
 	private final QuestionsService questionsService;
 
 	@Inject
 	public PersonsRest(PersonsService personsService, EstablishmentsService establishmentsService,
-			QuestionsService questionsService) {
+			AuthenticationService authenticationService, QuestionsService questionsService) {
 		this.personsService = personsService;
 		this.establishmentsService = establishmentsService;
+		this.authenticationService = authenticationService;
 		this.questionsService = questionsService;
 	}
 	
@@ -42,20 +47,20 @@ public class PersonsRest {
 	}
 	
 	@GET
-	@Path("/{personId}/questions")
+	@Path("/questions")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Question> getAuthorQuestions(@PathParam("personId") long personId) {
-		final Person person = personsService.getPerson(personId);
-		return questionsService.getQuestionsByAuthor(person);
+	public List<Question> getAuthorQuestions(@Auth Subject subject) {
+		final Person author = authenticationService.getCurrentlyLoggedInPerson(subject);
+		return questionsService.getQuestionsByAuthor(author);
 	}
 	
 	@GET
-	@Path("/{personId}/questions/{establishmentId}")
+	@Path("/questions/{establishmentId}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Question> getQuestionsByAuthorAndEstablishment(@PathParam("personId") long personId,
+	public List<Question> getQuestionsByAuthorAndEstablishment(@Auth Subject subject,
 			@PathParam("establishmentId") long establishmentId) {
-		final Person person = personsService.getPerson(personId);
+		final Person author = authenticationService.getCurrentlyLoggedInPerson(subject);
 		final Establishment establishment = establishmentsService.getEstablishment(establishmentId);
-		return questionsService.getQuestionsByAuthorAndEstablishment(person, establishment);
+		return questionsService.getQuestionsByAuthorAndEstablishment(author, establishment);
 	}
 }

@@ -1,10 +1,8 @@
 $(document).ready(function() {
 	"use strict";
 	
-	var ENDPOINT = "http://localhost:8080/establishmentReview/api/establishments";
-	
-	function updateEstablishment(establishment, establishmentId) {
-		$.ajax(getEndpoint(ENDPOINT, establishmentId), {
+	function updateEstablishment(establishment) {
+		$.ajax(ENDPOINT_EST, {
 			method: "PUT",
 			dataType: "json",
 			data: JSON.stringify(establishment),
@@ -25,11 +23,7 @@ $(document).ready(function() {
 		$("[name='description']").val(establishment.description);
 	}
 	
-	var currId = 0;
-	getCurrentlyLoggedInEstablishment().success(function(establishment) {
-		  populateForm(establishment);
-		  currId = establishment.id;
-	});
+	getCurrentlyLoggedInEstablishment().then(populateForm);
 	
 	$("#save").click(function() {		
 		var establishment = {
@@ -42,7 +36,7 @@ $(document).ready(function() {
 		};
 		
 		if (isEmail(establishment.email)) {	
-			updateEstablishment(establishment, currId);
+			updateEstablishment(establishment);
 		} else {
 			listError(establishment.email + " is not a valid email!");
 		}

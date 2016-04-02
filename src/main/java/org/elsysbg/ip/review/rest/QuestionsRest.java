@@ -22,7 +22,6 @@ public class QuestionsRest {
 	@Inject
 	public QuestionsRest(QuestionsService questionsService, AuthenticationService authenticationService) {
 		this.questionsService = questionsService;
-
 		this.authenticationService = authenticationService;
 	}
 	

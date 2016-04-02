@@ -38,12 +38,12 @@ public class QuestionsService {
 		}
 	}
 	
-	public List<Question> getQuestionsByAuthor(Person person) {
+	public List<Question> getQuestionsByAuthor(Person author) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
 			final TypedQuery<Question> query =
 				em.createNamedQuery(Question.QUERY_QUESTION_BY_AUTHOR, Question.class);
-			query.setParameter("author", person);
+			query.setParameter("author", author);
 			return query.getResultList();
 		} finally {
 			em.close();
@@ -62,12 +62,12 @@ public class QuestionsService {
 		}
 	}
 	
-	public List<Question> getQuestionsByAuthorAndEstablishment(Person person, Establishment establishment) {
+	public List<Question> getQuestionsByAuthorAndEstablishment(Person author, Establishment establishment) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
 			final TypedQuery<Question> query =
 				em.createNamedQuery(Question.QUERY_QUESTION_BY_AUTHOR_AND_ESTABLISHMENT, Question.class);
-			query.setParameter("author", person);
+			query.setParameter("author", author);
 			query.setParameter("establishment", establishment);
 			return query.getResultList();
 		} finally {
