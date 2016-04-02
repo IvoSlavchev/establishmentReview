@@ -3,6 +3,7 @@ package org.elsysbg.ip.review;
 import org.elsysbg.ip.review.services.AuthenticationService;
 import org.elsysbg.ip.review.services.EntityManagerService;
 import org.elsysbg.ip.review.services.PersonsService;
+import org.elsysbg.ip.review.services.QuestionsService;
 import org.elsysbg.ip.review.services.ReviewsService;
 import org.elsysbg.ip.review.services.EstablishmentsService;
 
@@ -26,6 +27,7 @@ public class ReviewServletContextListener extends GuiceServletContextListener {
 					bind(PersonsService.class);
 					bind(EstablishmentsService.class);		
 					bind(ReviewsService.class);
+					bind(QuestionsService.class);
 				}
 			});
 		}

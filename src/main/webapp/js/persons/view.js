@@ -54,30 +54,30 @@ $(document).ready(function() {
 		$("#addReview").click(function() {
 			clearInput();
 			$("#addReviewPanel").show();
-			$("#addReview, #askQuestion, #reviews").hide();
+			$("#addReview, #askQuestion, #reviews, #questions").hide();
 		})
 		
 		$("#askQuestion").click(function() {
 			clearInput();
 			$("#askQuestionPanel").show();
-			$("#addReview, #askQuestion, #reviews").hide();
+			$("#addReview, #askQuestion, #reviews, #questions").hide();
 		})
 		
 		$(".cancel").click(function() {
 			$("#addReviewPanel, #askQuestionPanel").hide();
-			$("#addReview, #askQuestion, #reviews").show();
+			$("#addReview, #askQuestion, #reviews, #questions").show();
 		});
 		
 		$("#saveReview").click(function() {
 			createReview();
 			$("#addReviewPanel").hide();
-			$("#addReview, #askQuestion, #reviews").show();
+			$("#addReview, #askQuestion, #reviews, #questions").show();
 		});
 		
 		$("#saveQuestion").click(function() {
 			createQuestion();
 			$("#askQuestionPanel").hide();
-			$("#addReview, #askQuestion, #reviews").show();
+			$("#addReview, #askQuestion, #reviews, #questions").show();
 		});
 	}
 	

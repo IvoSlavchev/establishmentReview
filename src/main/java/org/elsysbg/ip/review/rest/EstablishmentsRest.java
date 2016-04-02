@@ -14,46 +14,51 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.elsysbg.ip.review.entities.Establishment;
+import org.elsysbg.ip.review.entities.Question;
 import org.elsysbg.ip.review.entities.Review;
 import org.elsysbg.ip.review.services.EstablishmentsService;
+import org.elsysbg.ip.review.services.QuestionsService;
 import org.elsysbg.ip.review.services.ReviewsService;
 
 @Path("/establishments")
 public class EstablishmentsRest {
 	private final EstablishmentsService establishmentsService;
 	private final ReviewsService reviewsService;
+	private final QuestionsService questionsService;
 
 	@Inject
-	public EstablishmentsRest(EstablishmentsService establishmentsService, ReviewsService reviewsService) {
+	public EstablishmentsRest(EstablishmentsService establishmentsService, ReviewsService reviewsService,
+			QuestionsService questionsService) {
 		this.establishmentsService = establishmentsService;
 		this.reviewsService = reviewsService;
+		this.questionsService = questionsService;
 	}
 
 	@POST
 	@RequiresGuest
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Establishment createEstablishment(Establishment establishment) {
 		return establishmentsService.createEstablishment(establishment);
 	}
 
 	@GET
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<Establishment> getEstablishments() {
 		return establishmentsService.getEstablishments();
 	}
 
 	@GET
 	@Path("/{establishmentId}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Establishment getEstablishment(@PathParam("establishmentId") long establishmentId) {
 		return establishmentsService.getEstablishment(establishmentId);
 	}
 
 	@PUT
 	@Path("/{establishmentId}")
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Establishment updateEstablishment(@PathParam("establishmentId") long establishmentId,
 			Establishment establishment) {
 		final Establishment fromDb = establishmentsService.getEstablishment(establishmentId);
@@ -68,9 +73,17 @@ public class EstablishmentsRest {
 
 	@GET
 	@Path("/{establishmentId}/reviews")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<Review> getEstablishmentReviews(@PathParam("establishmentId") long establishmentId) {
 		final Establishment establishment = establishmentsService.getEstablishment(establishmentId);
 		return reviewsService.getReviewsByEstablishment(establishment);
+	}
+	
+	@GET
+	@Path("/{establishmentId}/questions")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public List<Question> getEstablishmentQuestions(@PathParam("establishmentId") long establishmentId) {
+		final Establishment establishment = establishmentsService.getEstablishment(establishmentId);
+		return questionsService.getQuestionsByEstablishment(establishment);
 	}
 }
