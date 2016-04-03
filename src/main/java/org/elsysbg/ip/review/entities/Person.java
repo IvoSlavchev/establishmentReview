@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,10 +39,10 @@ public class Person {
 	@Column(nullable = false)
 	private String email;
 	
-	@ManyToMany
-	@JoinTable(name="person_establishment",
-		joinColumns=@JoinColumn(name="person_id", referencedColumnName="id"),
-		inverseJoinColumns=@JoinColumn(name="establishment_id", referencedColumnName="id"))
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="Person_Establishment",
+		joinColumns=@JoinColumn(name="person_id"),
+		inverseJoinColumns=@JoinColumn(name="establishment_id"))
 	private List<Establishment> favourites;
 	
 	public long getId() {
@@ -73,5 +74,13 @@ public class Person {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public List<Establishment> getFavourites() {
+		return favourites;
+	}
+	
+	public void setFavourites(List<Establishment> favourites) {
+		this.favourites = favourites;
 	}
 }

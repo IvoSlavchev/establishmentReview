@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	"use strict";
 	
+	var ENDPOINT_FAV = "http://localhost:8080/establishmentReview/api/persons/favourites"
 	var ENDPOINT_REV = "http://localhost:8080/establishmentReview/api/reviews";
 	var ENDPOINT_QUEST = "http://localhost:8080/establishmentReview/api/questions";
 	
@@ -15,7 +16,7 @@ $(document).ready(function() {
 		$("[name='opinion']").val("");
 		$("[name='question']").val("");
 	}
-	
+
 	function createReview() {
 		var review = {
 			rating: $("select").val(),
@@ -69,9 +70,6 @@ $(document).ready(function() {
 	}
 	
 	function attachHandlers() {
-		$("#addFavourite").click(function() {
-		})
-		
 		$("#addReview").click(function() {
 			clearInput();
 			$("#addReviewPanel").show();

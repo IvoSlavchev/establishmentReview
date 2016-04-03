@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -46,6 +47,19 @@ public class PersonsRest {
 		return personsService.createPerson(person);
 	}
 	
+	@PUT
+	@Path("/favourites/{establishmentId}")
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public Person addFavourite(@Auth Subject subject, @PathParam("establishmentId") long establishmentId) {
+		final Person person = authenticationService.getCurrentlyLoggedInPerson(subject);
+		final Establishment establishment = establishmentsService.getEstablishment(establishmentId);
+		final List<Establishment> favourites = person.getFavourites();
+		favourites.add(establishment);
+		person.setFavourites(favourites);
+		return personsService.updatePerson(person);
+	}
+	
 	@GET
 	@Path("/questions")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -57,8 +71,7 @@ public class PersonsRest {
 	@GET
 	@Path("/questions/{establishmentId}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Question> getQuestionsByAuthorAndEstablishment(@Auth Subject subject,
-			@PathParam("establishmentId") long establishmentId) {
+	public List<Question> getQuestionsByAuthorAndEstablishment(@Auth Subject subject, @PathParam("establishmentId") long establishmentId) {
 		final Person author = authenticationService.getCurrentlyLoggedInPerson(subject);
 		final Establishment establishment = establishmentsService.getEstablishment(establishmentId);
 		return questionsService.getQuestionsByAuthorAndEstablishment(author, establishment);

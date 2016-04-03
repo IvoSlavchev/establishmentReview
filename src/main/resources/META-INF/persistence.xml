@@ -9,6 +9,7 @@
 		<class>org.elsysbg.ip.review.entities.Establishment</class>
 		<class>org.elsysbg.ip.review.entities.Review</class>
 		<class>org.elsysbg.ip.review.entities.Question</class>
+		<class>org.elsysbg.ip.review.entities.Answer</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>

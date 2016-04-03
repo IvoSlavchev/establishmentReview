@@ -1,6 +1,5 @@
 package org.elsysbg.ip.review.services;
 
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
@@ -44,6 +43,21 @@ public class PersonsService {
 			query.setParameter("username", username);
 			return query.getSingleResult();
 		} finally {
+			em.close();
+		}
+	}
+	
+	public Person updatePerson(Person person) {
+		final EntityManager em = entityManagerService.createEntityManager();
+		try {
+			em.getTransaction().begin();
+			final Person result = em.merge(person);
+			em.getTransaction().commit();
+			return result;
+		} finally {
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
 			em.close();
 		}
 	}
