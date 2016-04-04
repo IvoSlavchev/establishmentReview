@@ -60,8 +60,30 @@ $(document).ready(function() {
 	function getQuestions() {
 		return getQuestionsByAuthorAndEstablishment().then(function(response) {
 			$("#questions").html("");
-			_.forEach(response, addQuestion);
+			_.forEach(response.reverse(), addQuestion);
 		});
+	}
+	
+	function addQuestion(question) {
+		var newItem = $("<div />");
+		newItem.addClass("panel panel-danger");
+		var newHeading = $("<div />");
+		newHeading.addClass("panel-heading");
+		if (question.answered) {
+			newHeading.text("Answered");
+		} else {
+			newHeading.text("Unanswered");
+		}
+		var newBody = $("<div />");
+		newBody.addClass("panel-body");
+		var newQuestion = $("<p />");
+		newQuestion.text(question.question);
+		var newDate = $("<i />");
+		var date = new Date(question.createdOn);
+		newDate.text("Asked at " + date.toString().slice(0, 21));
+		newBody.append(newQuestion, newDate);
+		newItem.append(newHeading, newBody);
+		$("#questions").append(newItem);
 	}
 	
 	function reloadReviewsAndQuestions() {
@@ -71,30 +93,31 @@ $(document).ready(function() {
 	
 	function attachHandlers() {
 		$("#addReview").click(function() {
-			clearInput();
-			$("#addReviewPanel").show();
 			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").hide();
+			$("#addReviewPanel").show();
 		})
 		
-		$("#askQuestion").click(function() {
-			clearInput();
-			$("#askQuestionPanel").show();
+		$("#askQuestion").click(function() {			
 			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").hide();
+			$("#askQuestionPanel").show();
 		})
 		
 		$(".cancel").click(function() {
+			clearInput();
 			$("#addReviewPanel, #askQuestionPanel").hide();
 			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").show();
 		});
 		
 		$("#saveReview").click(function() {
 			createReview();
+			clearInput();
 			$("#addReviewPanel").hide();
 			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").show();
 		});
 		
 		$("#saveQuestion").click(function() {
 			createQuestion();
+			clearInput();
 			$("#askQuestionPanel").hide();
 			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").show();
 		});

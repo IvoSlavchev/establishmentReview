@@ -96,15 +96,15 @@ function addReview(review) {
 	newItem.addClass("panel panel-warning");
 	var newRating = $("<div />");
 	newRating.addClass("panel-heading");
-	newRating.text(review.rating + " out of 5");
+	newRating.text(review.author.username + " rated " + review.rating + " out of 5");
 	var newBody = $("<div />");
 	newBody.addClass("panel-body");
 	var newOpinion = $("<p />");
 	newOpinion.text(review.opinion);
-	var newAuthor = $("<i />");
+	var newDate = $("<i />");
 	var date = new Date(review.createdOn);
-	newAuthor.text("- " + review.author.username + ", " + date.toString().slice(0, 21));
-	newBody.append(newOpinion, newAuthor);
+	newDate.text("Posted at " + date.toString().slice(0, 21));
+	newBody.append(newOpinion, newDate);
 	newItem.append(newRating, newBody);
 	$("#reviews").append(newItem);
 }
@@ -112,33 +112,8 @@ function addReview(review) {
 function getReviews(establishmentId) {
 	return getReviewsByEstablishment(establishmentId).then(function(response) {
 		$("#reviews").html("");
-		_.forEach(response, addReview);
+		_.forEach(response.reverse(), addReview);
 	});
-}
-
-function addQuestion(question) {
-	var newItem = $("<div />");
-	newItem.addClass("panel panel-danger");
-	var newHeading = $("<div />");
-	newHeading.addClass("panel-heading");
-	newHeading.text("Question for " + question.establishment.name);
-	var newBody = $("<div />");
-	newBody.addClass("panel-body");
-	var newQuestion = $("<p />");
-	newQuestion.text(question.question);
-	var newAuthor = $("<i />");
-	var date = new Date(question.createdOn);
-	newAuthor.text("- " + question.author.username + ", " + date.toString().slice(0, 21));
-	var newStatus = $("<br><i />");
-	if (question.answered) {
-		newStatus.text("Answered");
-	} else {
-		newStatus.text("Unanswered");
-	}
-	newStatus.text("Unanswered");
-	newBody.append(newQuestion, newAuthor, newStatus);
-	newItem.append(newHeading, newBody);
-	$("#questions").append(newItem);
 }
 
 $(document).ready(function() {

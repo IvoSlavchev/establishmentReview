@@ -97,3 +97,11 @@ input, select, textarea, form button, form a {
 	margin-right: 1%;
 	margin-top: 2%;
 }
+
+#questions a {
+	color: #a94442;
+}
+
+.addAnswer {
+	margin-top: 3%;
+}

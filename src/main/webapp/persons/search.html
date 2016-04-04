@@ -14,18 +14,24 @@
 		<a id="logout" href="/establishmentReview">Log out</a>
 		<div class="container">
 			<h1 class="text-center text-warning">Establishments</h1>
-			<form class="form-inline" method="post">
+			<form class="form-inline text-center" method="post">
 				<input type="text" name="name" class="form-control" placeholder="Name" />
 				<input type="text" name="address" class="form-control" placeholder="Address" />
-				<select class="form-control">
+				<select name="type" class="form-control">
 					<option value="All">All</option>
 					<option value="Restaurant">Restaurant</option>
 				  	<option value="Bar">Bar</option>
 				  	<option value="Cinema">Cinema</option>
 				  	<option value="Other">Other</option>
 				</select>
-				<input type="text" name="rating" class="form-control" placeholder="Average rating" />
-				<input type="text" name="reviewsCount" class="form-control" placeholder="Review count"/>
+				<select name="rating" class="form-control">
+					<option value="0">All ratings</option>
+					<option value="1">>= 1</option>
+				  	<option value="2">>= 2</option>
+				  	<option value="3">>= 3</option>
+				  	<option value="4">>= 4</option>
+				  	<option value="5">5</option>
+				</select>
 				<button class="btn btn-warning" id="search" type="button">Search</button>	
 			</form>
 			<ul class="list-group" id="establishmentsList"></ul>

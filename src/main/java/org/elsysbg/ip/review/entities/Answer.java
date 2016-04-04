@@ -28,7 +28,7 @@ public class Answer {
 	private Date createdOn;
 	
 	@OneToOne(mappedBy="answer")
-    private Question question;
+	private Question question;
 
 	public long getId() {
 		return id;

@@ -7,7 +7,6 @@ $(document).ready(function() {
 	var address = "";
 	var type = "All";
 	var rating = 0;
-	var reviewsCount = 0;
 	
 	function contains(string, substring) {
 		return string.toUpperCase().indexOf(substring.toUpperCase()) > -1
@@ -16,9 +15,8 @@ $(document).ready(function() {
 	function getInput() {
 		name = $("[name='name']").val();
 		address = $("[name='address']").val();
-		type = $("select").val();
+		type = $("[name='type']").val();
 		rating = $("[name='rating']").val();
-		reviewsCount = $("[name='reviewsCount']").val();
 	}
 	
 	function getEstablishments() {
@@ -32,9 +30,7 @@ $(document).ready(function() {
 		if ((name === "" || contains(item.name, name)) &&
 			(address === "" || contains(item.address, address)) &&
 			(type === "All" || contains(item.type, type)) &&
-			((item.allRatings / item.reviewsCount) >= rating ||
-					item.reviewsCount == 0 && rating == 0) &&
-					item.reviewsCount >= reviewsCount) {
+			(item.allRatings / item.reviewsCount) >= rating) {
 			addItemToList(item);
 		}
 	}
@@ -57,12 +53,10 @@ $(document).ready(function() {
 		if (item.reviewsCount == 0) {
 			newRating.text("No reviews given")
 		} else {
-			newRating.text("Average rating of " + (item.allRatings / item.reviewsCount).toFixed(2));
-			var newReviewCount = $("<p />");
-			newReviewCount.addClass("list-group-item-description");
-			newReviewCount.text(item.reviewsCount + " given reviews");
+			newRating.text("Rated " + (item.allRatings / item.reviewsCount).toFixed(2) + " out of 5 from " +
+					item.reviewsCount + " reviews");
 		}
-		newItem.append(newHeading, newAddress, newType, newRating, newReviewCount);
+		newItem.append(newHeading, newAddress, newType, newRating);
 		$("#establishmentsList").append(newItem);
 	}
 		
