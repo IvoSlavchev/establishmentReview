@@ -25,7 +25,7 @@ public class ReviewsService {
 		try {
 			em.getTransaction().begin();
 			review.setCreatedOn(new Date());
-			review.setEstablishment(em.getReference(Establishment.class, establishment));
+			review.setEstablishment(em.find(Establishment.class, establishment));
 			em.persist(review);
 			em.getTransaction().commit();
 			return review;

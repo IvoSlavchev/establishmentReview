@@ -68,7 +68,8 @@ public class PersonsRest {
 	@GET
 	@Path("/questions/{establishmentId}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Question> getQuestionsByAuthorAndEstablishment(@Auth Subject subject, @PathParam("establishmentId") long establishmentId) {
+	public List<Question> getQuestionsByAuthorAndEstablishment(@Auth Subject subject,
+			@PathParam("establishmentId") long establishmentId) {
 		final Person author = authenticationService.getCurrentlyLoggedInPerson(subject);
 		final Establishment establishment = establishmentsService.getEstablishment(establishmentId);
 		return questionsService.getQuestionsByAuthorAndEstablishment(author, establishment);

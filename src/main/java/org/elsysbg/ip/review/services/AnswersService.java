@@ -24,6 +24,9 @@ public class AnswersService {
 			em.getTransaction().begin();
 			answer.setCreatedOn(new Date());
 			final Question question = em.find(Question.class, questionId);
+			if (question == null) {
+				throw new IllegalArgumentException("No question with id: " + questionId);
+			}
 			question.setAnswer(answer);
 			em.persist(answer);
 			em.getTransaction().commit();

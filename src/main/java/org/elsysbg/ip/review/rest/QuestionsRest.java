@@ -31,13 +31,13 @@ public class QuestionsRest {
 	}
 	
 	@POST
-	@Path("/{establishment}")
+	@Path("/{establishmentId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Question createQuestion(@Auth Subject subject, Question question,
-			@PathParam("establishment") long establishment) {
+			@PathParam("establishmentId") long establishmentId) {
 		question.setAuthor(authenticationService.getCurrentlyLoggedInPerson(subject));
-		return questionsService.createQuestion(question, establishment);
+		return questionsService.createQuestion(question, establishmentId);
 	}
 	
 	@POST

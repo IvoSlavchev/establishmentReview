@@ -26,7 +26,7 @@ public class QuestionsService {
 		try {
 			em.getTransaction().begin();
 			question.setCreatedOn(new Date());
-			question.setEstablishment(em.getReference(Establishment.class, establishment));
+			question.setEstablishment(em.find(Establishment.class, establishment));
 			em.persist(question);
 			em.getTransaction().commit();
 			return question;

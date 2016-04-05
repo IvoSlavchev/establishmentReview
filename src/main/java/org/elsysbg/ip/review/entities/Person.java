@@ -36,7 +36,7 @@ public class Person {
 	@Id
 	private long id;
 	
-	@Column(nullable = false, unique=true)
+	@Column(nullable = false, unique = true)
 	private String username;
 	
 	@Column(nullable = false)
@@ -46,9 +46,9 @@ public class Person {
 	private String email;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name="Person_Establishment",
-		joinColumns=@JoinColumn(name="person_id"),
-		inverseJoinColumns=@JoinColumn(name="establishment_id"))
+	@JoinTable(name = "Person_Establishment",
+		joinColumns = @JoinColumn(name = "person_id"),
+		inverseJoinColumns = @JoinColumn(name = "establishment_id"))
 	private List<Establishment> favourites;
 	
 	public long getId() {

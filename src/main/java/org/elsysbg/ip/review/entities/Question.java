@@ -19,11 +19,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Entity
 @NamedQueries({
-	@NamedQuery(name=Question.QUERY_QUESTION_BY_AUTHOR,
+	@NamedQuery(name = Question.QUERY_QUESTION_BY_AUTHOR,
 			query = "SELECT q from Question q WHERE q.author=:author"),
-	@NamedQuery(name=Question.QUERY_QUESTION_BY_ESTABLISHMENT,
+	@NamedQuery(name = Question.QUERY_QUESTION_BY_ESTABLISHMENT,
 		query = "SELECT q from Question q WHERE q.establishment=:establishment"),
-	@NamedQuery(name=Question.QUERY_QUESTION_BY_AUTHOR_AND_ESTABLISHMENT,
+	@NamedQuery(name = Question.QUERY_QUESTION_BY_AUTHOR_AND_ESTABLISHMENT,
 		query = "SELECT q from Question q WHERE q.author=:author AND q.establishment=:establishment")
 })
 public class Question {

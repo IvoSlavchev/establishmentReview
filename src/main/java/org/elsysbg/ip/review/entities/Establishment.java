@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 @NamedQueries({
 	@NamedQuery(name = Establishment.QUERY_BY_USERNAME,
 		query = "SELECT e FROM Establishment e WHERE e.username = :username"),
-	@NamedQuery(name=Establishment.QUERY_ALL,
+	@NamedQuery(name = Establishment.QUERY_ALL,
 		query = "SELECT e FROM Establishment e")
 })
 public class Establishment {
@@ -31,7 +31,7 @@ public class Establishment {
 	@Id
 	private long id;
 	
-	@Column(nullable = false, unique=true)
+	@Column(nullable = false, unique = true)
 	private String username;
 	
 	@Column(nullable = false)

@@ -130,12 +130,16 @@ function addAnswer(answer) {
 	return newStatus;
 }
 
+function logout() {
+	$.ajax(ENDPOINT_AUTH, {
+		method: "DELETE"
+	});
+}
+
 $(document).ready(function() {
 	"use strict";
 	
 	$("#logout").click(function() {
-		$.ajax(ENDPOINT_AUTH, {
-			method: "DELETE"
-		});
+		logout();
 	});
 });
