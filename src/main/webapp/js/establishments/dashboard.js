@@ -19,8 +19,26 @@ $(document).ready(function() {
 		$("[name='answer']").val("");
 	}
 	
-	function createAnswer() {
-		alert($("[name='answer']").val());
+	function populateFields(questionId) {
+		$("#questionText").text($("#questions p#" + questionId).text());
+		$("#questionDate").text($("#questions i#" + questionId).text());
+		$("#saveAnswer").attr("question-id", questionId);
+	}
+	
+	function createAnswer(questionId) {
+		var answer = {
+			answer: $("[name='answer']").val()
+		};
+		
+		$.ajax(getEndpoint(ENDPOINT_QUEST, questionId) + "/answer", {
+			method: "POST",
+			dataType: "json",
+			data: JSON.stringify(answer),
+			contentType: "application/json; charset=utf-8",
+			success: function() {
+				reloadReviewsAndQuestions();
+			}
+		});
 	}
 	
 	function addQuestion(question) {
@@ -38,25 +56,29 @@ $(document).ready(function() {
 		var date = new Date(question.createdOn);
 		newDate.attr("id", question.id);
 		newDate.text("Asked at " + date.toString().slice(0, 21));
-		var newStatus = $("<p />");
-		if (question.answered) {
-			newStatus.text("Answered");
+		var newAnswer = $("<p />");
+		if (question.answer) {
+			newAnswer = addAnswer(question.answer);
 		} else {
 			var newButton = $("<button />");
 			newButton.addClass("btn btn-danger addAnswer");
 			newButton.attr("id", question.id);
 			newButton.text("Answer");
-			newStatus.append(newButton);
+			newAnswer.append(newButton);
 		}
-		newBody.append(newQuestion, newDate, newStatus);
+		newBody.append(newQuestion, newDate, newAnswer);
 		newItem.append(newHeading, newBody);
 		$("#questions").append(newItem);
 	}
 	
+	function reloadReviewsAndQuestions() {
+		getReviews(establishmentId);
+		getQuestions();
+	}
+	
 	function attachHandlers() {
 		$("#questions").on("click", ".addAnswer", function() {
-			$("#questionText").text($("#questions p#" + this.id).text());
-			$("#questionDate").text($("#questions i#" + this.id).text());
+			populateFields(this.id);
 		    $("#edit, #reviews, #questions, #infoHeaders").hide();
 		    $("#addAnswerPanel").show();
 		});
@@ -68,18 +90,19 @@ $(document).ready(function() {
 		});
 		
 		$("#saveAnswer").click(function() {
-			createAnswer();
+			createAnswer($("#saveAnswer").attr("question-id"));
 			clearInput();
 			$("#addAnswerPanel").hide();
 			$("#edit, #reviews, #questions, #infoHeaders").show();
 		});
 	}
 	
+	var establishmentId = 0;
 	getCurrentlyLoggedInEstablishment().success(function(establishment) {
 		showEstablishment(establishment);
-		getReviews(establishment.id);
-		getQuestions();
+		establishmentId = establishment.id;
+		reloadReviewsAndQuestions();
+		attachHandlers();
 	});
-
-	attachHandlers();
+	
 });

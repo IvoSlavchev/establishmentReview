@@ -3,7 +3,6 @@ $(document).ready(function() {
 	
 	var ENDPOINT_FAV = "http://localhost:8080/establishmentReview/api/persons/favourites"
 	var ENDPOINT_REV = "http://localhost:8080/establishmentReview/api/reviews";
-	var ENDPOINT_QUEST = "http://localhost:8080/establishmentReview/api/questions";
 	
 	function getQueryId() {
 		var query = window.location.search.substring(1);
@@ -81,8 +80,10 @@ $(document).ready(function() {
 		newItem.addClass("panel panel-danger");
 		var newHeading = $("<div />");
 		newHeading.addClass("panel-heading");
-		if (question.answered) {
+		var newAnswer = $("<p />");
+		if (question.answer) {
 			newHeading.text("Answered");
+			newAnswer = addAnswer(question.answer);
 		} else {
 			newHeading.text("Unanswered");
 		}
@@ -93,7 +94,7 @@ $(document).ready(function() {
 		var newDate = $("<i />");
 		var date = new Date(question.createdOn);
 		newDate.text("Asked at " + date.toString().slice(0, 21));
-		newBody.append(newQuestion, newDate);
+		newBody.append(newQuestion, newDate, newAnswer);
 		newItem.append(newHeading, newBody);
 		$("#questions").append(newItem);
 	}

@@ -28,16 +28,16 @@ $(document).ready(function() {
 		newBody.addClass("panel-body");
 		var newQuestion = $("<p />");
 		newQuestion.text(question.question);
-		var newStatus = $("<br><i />");
-		if (question.answered) {
-			newStatus.text("Answered");
+		var newAnswer = $("<p />");
+		if (question.answer) {
+			newAnswer = addAnswer(question.answer);
 		} else {
-			newStatus.text("Unanswered");
+			newAnswer.text("Unanswered");
 		}
 		var newDate = $("<i />");
 		var date = new Date(question.createdOn);
 		newDate.text("Asked at " + date.toString().slice(0, 21));
-		newBody.append(newQuestion, newDate, newStatus);
+		newBody.append(newQuestion, newDate, newAnswer);
 		newItem.append(newHeading, newBody);
 		$("#questions").append(newItem);
 	}

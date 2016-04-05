@@ -1,6 +1,7 @@
 var ENDPOINT_PER = "http://localhost:8080/establishmentReview/api/persons";
 var ENDPOINT_EST = "http://localhost:8080/establishmentReview/api/establishments";
 var ENDPOINT_AUTH = "http://localhost:8080/establishmentReview/api/authentication";
+var ENDPOINT_QUEST = "http://localhost:8080/establishmentReview/api/questions";
 
 function isEmail(email) {
     var regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -114,6 +115,19 @@ function getReviews(establishmentId) {
 		$("#reviews").html("");
 		_.forEach(response.reverse(), addReview);
 	});
+}
+
+function addAnswer(answer) {
+	var newStatus = $("<p />");
+	var newAnswerHeading = $("<h4 />");
+	newAnswerHeading.text("Answer:").css({"color": "#a94442"});
+	var newAnswerText = $("<p />");
+	newAnswerText.text(answer.answer);
+	var newAnswerDate = $("<i />");
+	var date = new Date(answer.createdOn);
+	newAnswerDate.text("Answered at " + date.toString().slice(0, 21));
+	newStatus.append(newAnswerHeading, newAnswerText, newAnswerDate);
+	return newStatus;
 }
 
 $(document).ready(function() {

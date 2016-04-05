@@ -54,7 +54,7 @@ public class Question {
 	private Establishment establishment;
 	
 	@OneToOne
-	@JoinColumn(name = "answer_id")
+	@JoinColumn
     private Answer answer;
 	
 	public long getId() {
@@ -103,5 +103,13 @@ public class Question {
 
 	public void setEstablishment(Establishment establishment) {
 		this.establishment = establishment;
+	}
+
+	public Answer getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(Answer answer) {
+		this.answer = answer;
 	}
 }
