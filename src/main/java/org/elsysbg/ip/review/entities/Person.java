@@ -13,9 +13,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.elsysbg.ip.review.entities.Establishment;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 @XmlRootElement
 @Entity
@@ -61,17 +67,28 @@ public class Person {
 		this.username = username;
 	}
 
+	@XmlTransient
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
 
+	@XmlElement
+	@JsonInclude
+	@JsonSetter
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@XmlTransient
+	@JsonIgnore
 	public String getEmail() {
 		return email;
 	}
 
+	@XmlElement
+	@JsonInclude
+	@JsonSetter
 	public void setEmail(String email) {
 		this.email = email;
 	}

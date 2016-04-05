@@ -30,7 +30,7 @@ $(document).ready(function() {
 		if ((name === "" || contains(item.name, name)) &&
 			(address === "" || contains(item.address, address)) &&
 			(type === "All" || contains(item.type, type)) &&
-			(item.allRatings / item.reviewsCount) >= rating) {
+			(rating == 0 ||(item.allRatings / item.reviewsCount) >= rating)) {
 			addItemToList(item);
 		}
 	}

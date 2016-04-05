@@ -32,8 +32,7 @@ public class AuthenticationRest {
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Person login(@Auth Subject subject, Person person) {
-		authenticationService.login(subject,
-				person.getUsername(), person.getPassword());
+		authenticationService.login(subject, person.getUsername(), person.getPassword());
 		return authenticationService.getCurrentlyLoggedInPerson(subject);
 	}
 	
@@ -43,8 +42,7 @@ public class AuthenticationRest {
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Establishment login(@Auth Subject subject, Establishment establishment) {
-		authenticationService.login(subject,
-				establishment.getUsername(), establishment.getPassword());
+		authenticationService.login(subject, establishment.getUsername(), establishment.getPassword());
 		return authenticationService.getCurrentlyLoggedInEstablishment(subject);
 	}
 	

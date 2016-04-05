@@ -17,6 +17,18 @@ $(document).ready(function() {
 		$("[name='question']").val("");
 	}
 
+	function addFavourite() {
+		$.ajax(getEndpoint(ENDPOINT_FAV, establishmentId), {
+			method: "POST"
+		});
+	}
+	
+	function showFavourites(person) {
+		_.forEach(person.favourites, function() {
+			alert(this.name);
+		});
+	}
+	
 	function createReview() {
 		var review = {
 			rating: $("select").val(),
@@ -92,6 +104,11 @@ $(document).ready(function() {
 	}
 	
 	function attachHandlers() {
+		$("#addFavourite").click(function() {
+			// TODO
+			// addFavourite();
+		});
+		
 		$("#addReview").click(function() {
 			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").hide();
 			$("#addReviewPanel").show();
