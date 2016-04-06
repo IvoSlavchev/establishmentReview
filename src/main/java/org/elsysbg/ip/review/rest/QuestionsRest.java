@@ -8,6 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.elsysbg.ip.review.entities.Answer;
 import org.elsysbg.ip.review.entities.Question;
@@ -34,6 +35,7 @@ public class QuestionsRest {
 	@Path("/{establishmentId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresPermissions("persons:createQuestions")
 	public Question createQuestion(@Auth Subject subject, Question question,
 			@PathParam("establishmentId") long establishmentId) {
 		question.setAuthor(authenticationService.getCurrentlyLoggedInPerson(subject));
@@ -44,6 +46,7 @@ public class QuestionsRest {
 	@Path("/{questionId}/answer")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresPermissions("establishments:answerQuestions")
 	public Answer createAnswer(Answer answer,
 			@PathParam("questionId") long questionId) {
 		return answersService.createAnswer(answer, questionId);

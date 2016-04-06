@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,6 +46,10 @@ public class Person {
 	
 	@Column(nullable = false)
 	private String email;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private SecurityRole role = SecurityRole.PERSON;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "Person_Establishment",
