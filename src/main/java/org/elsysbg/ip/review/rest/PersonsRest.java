@@ -62,6 +62,7 @@ public class PersonsRest {
 	@GET
 	@Path("/questions")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresPermissions("persons:getQuestionsByAuthor")
 	public List<Question> getAuthorQuestions(@Auth Subject subject) {
 		final Person author = authenticationService.getCurrentlyLoggedInPerson(subject);
 		return questionsService.getQuestionsByAuthor(author);
@@ -70,6 +71,7 @@ public class PersonsRest {
 	@GET
 	@Path("/questions/{establishmentId}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresPermissions("persons:getQuestionsByAuthorAndEstablishment")
 	public List<Question> getQuestionsByAuthorAndEstablishment(@Auth Subject subject,
 			@PathParam("establishmentId") long establishmentId) {
 		final Person author = authenticationService.getCurrentlyLoggedInPerson(subject);

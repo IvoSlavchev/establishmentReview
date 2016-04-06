@@ -88,6 +88,7 @@ public class EstablishmentsRest {
 	@GET
 	@Path("/questions")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresPermissions("establishments:getQuestionsByEstablishment")
 	public List<Question> getEstablishmentQuestions(@Auth Subject subject) {
 		final Establishment establishment = authenticationService.getCurrentlyLoggedInEstablishment(subject);
 		return questionsService.getQuestionsByEstablishment(establishment);

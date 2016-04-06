@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.shiro.authz.annotation.RequiresGuest;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.elsysbg.ip.review.entities.Establishment;
 import org.elsysbg.ip.review.entities.Person;
@@ -49,6 +50,7 @@ public class AuthenticationRest {
 	@GET
 	@Path("/persons")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresPermissions("persons:getLoggedIn")
 	public Person getCurrentlyLoggedInPerson(@Auth Subject subject) {
 		return authenticationService.getCurrentlyLoggedInPerson(subject);
 	}
@@ -56,6 +58,7 @@ public class AuthenticationRest {
 	@GET
 	@Path("/establishments")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresPermissions("establishments:getLoggedIn")
 	public Establishment getCurrentlyLoggedInEstablishment(@Auth Subject subject) {
 		return authenticationService.getCurrentlyLoggedInEstablishment(subject);
 	}
