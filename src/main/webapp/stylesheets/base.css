@@ -72,7 +72,7 @@ input, select, textarea, form button, form a {
 	display: block;
 }
 
-#establishmentsList {
+#establishments {
 	margin-top: 5%;
 	clear: both;
 }
@@ -113,6 +113,10 @@ input, select, textarea, form button, form a {
 	margin-top: -50px;
 	color: gray;
 	font-size: 16px;
+}
+
+#establishments a {
+	color: #8a6d3b;
 }
 
 #questions a {

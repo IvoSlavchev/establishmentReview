@@ -22,6 +22,7 @@ $(document).ready(function() {
 		newHeading.addClass("panel-heading");
 		var newLink = $("<a />")
 		newLink.attr("href", "view.html?=" + question.establishment.id);
+		newLink.addClass("btn-block");
 		newLink.text("Question for " + question.establishment.name);
 		newHeading.append(newLink);
 		var newBody = $("<div />");

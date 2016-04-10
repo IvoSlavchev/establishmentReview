@@ -36,38 +36,41 @@ $(document).ready(function() {
 	}
 	
 	function addItemToList(item) {
-		var newItem = $("<a />");
-		newItem.attr("href", "/establishmentReview/persons/view.html?id=" + item.id);
-		newItem.addClass("list-group-item list-group-item-warning");
-		var newHeading = $("<h4 />");
-		newHeading.addClass("list-group-item-heading");
-		newHeading.text(item.name);
+		var newItem = $("<div />");
+		newItem.addClass("panel panel-warning");
+		var newHeading = $("<div />");
+		newHeading.addClass("panel-heading");
+		var newLink = $("<a />")
+		newLink.attr("href", "view.html?=" + item.id);
+		newLink.addClass("btn-block");
+		newLink.text(item.name);
+		newHeading.append(newLink);
+		var newBody = $("<div />");
+		newBody.addClass("panel-body");
 		var newAddress = $("<p />");
-		newAddress.addClass("list-group-item-description");
 		newAddress.text(item.address);
 		var newType = $("<p />");
-		newType.addClass("list-group-item-description");
 		newType.text(item.type);
 		var newRating = $("<p />");
-		newRating.addClass("list-group-item-description");
 		if (item.reviewsCount == 0) {
 			newRating.text("No reviews given")
 		} else {
 			newRating.text("Rated " + (item.allRatings / item.reviewsCount).toFixed(2) + " out of 5 from " +
 					item.reviewsCount + " reviews");
 		}
-		newItem.append(newHeading, newAddress, newType, newRating);
-		$("#establishmentsList").append(newItem);
+		newBody.append(newAddress, newType, newRating);
+		newItem.append(newHeading, newBody);
+		$("#establishments").append(newItem);
 	}
 		
 	function reloadList() {
 		return getEstablishments().then(function(response) {
-			$("#establishmentsList").html("");
+			$("#establishments").html("");
 			_.forEach(response, filterItems);
-			if (!$("#establishmentsList a").length) {
+			if (!$("#establishments a").length) {
 				var newItem = $("<li />");
 				newItem.text("No results found!");
-				$("#establishmentsList").append(newItem);
+				$("#establishments").append(newItem);
 			}
 		});
 	}
