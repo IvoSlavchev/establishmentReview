@@ -79,21 +79,21 @@ $(document).ready(function() {
 	function attachHandlers() {
 		$("#questions").on("click", ".addAnswer", function() {
 			populateFields(this.id);
-		    $("#edit, #reviews, #questions, #infoHeaders").hide();
+		    $("#edit, #reviews, #questions").hide();
 		    $("#addAnswerPanel").show();
 		});
 		
 		$(".cancel").click(function() {
 			clearInput();
 			$("#addAnswerPanel").hide();
-			$("#edit, #reviews, #questions, #infoHeaders").show();
+			$("#edit, #reviews, #questions").show();
 		});
 		
 		$("#saveAnswer").click(function() {
 			createAnswer($("#saveAnswer").attr("question-id"));
 			clearInput();
 			$("#addAnswerPanel").hide();
-			$("#edit, #reviews, #questions, #infoHeaders").show();
+			$("#edit, #reviews, #questions").show();
 		});
 	}
 	

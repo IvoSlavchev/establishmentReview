@@ -111,33 +111,33 @@ $(document).ready(function() {
 		});
 		
 		$("#addReview").click(function() {
-			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").hide();
+			$("#addFavourite, #addReview, #askQuestion, #reviews, #questions").hide();
 			$("#addReviewPanel").show();
 		})
 		
 		$("#askQuestion").click(function() {			
-			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").hide();
+			$("#addFavourite, #addReview, #askQuestion, #reviews, #questions").hide();
 			$("#askQuestionPanel").show();
 		})
 		
 		$(".cancel").click(function() {
 			clearInput();
 			$("#addReviewPanel, #askQuestionPanel").hide();
-			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").show();
+			$("#addFavourite, #addReview, #askQuestion, #reviews, #questions").show();
 		});
 		
 		$("#saveReview").click(function() {
 			createReview();
 			clearInput();
 			$("#addReviewPanel").hide();
-			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").show();
+			$("#addFavourite, #addReview, #askQuestion, #reviews, #questions").show();
 		});
 		
 		$("#saveQuestion").click(function() {
 			createQuestion();
 			clearInput();
 			$("#askQuestionPanel").hide();
-			$("#addReview, #askQuestion, #reviews, #questions, #infoHeaders").show();
+			$("#addFavourite, #addReview, #askQuestion, #reviews, #questions").show();
 		});
 	}
 	

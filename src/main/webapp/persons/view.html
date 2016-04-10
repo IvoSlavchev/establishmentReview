@@ -13,24 +13,22 @@
 		  <li class="active">View</li>
 		</ul>
 		<a id="logout" href="/establishmentReview">Log out</a>
-		<button class="btn btn-warning" id="addFavourite" type="button">Add to favourites</button>	
 		<div class="container">	
-			<h1 class="text-center text-warning" id="name"></h1>
-			<div class="col-md-4">
-				<h3 class="text-warning" id="address"></h3>
-				<h3 class="text-warning" id="type"></h3>	
-				<h4 id="email"></h4>
-				<h4 id="telephone"></h4>
-				<p id="description"></p>
-				<h4 class="text-warning" id="rating"></h4>
-				<h4 class="text-warning" id="reviewCount"></h4>
-				<ul id="errors"></ul>
-				<button class="btn btn-warning" id="addReview" type="button">Post review</button>
-				<button class="btn btn-danger" id="askQuestion" type="button">Ask question</button>
-			</div>
-			<div id="infoHeaders">
-				<h3 class="text-center text-warning col-md-4">Reviews</h3>
-				<h3 class="text-center text-danger col-md-4">Your questions</h3>
+			<div class="panel panel-warning col-md-4" id="info">
+				<div class="panel-heading"><h3 class="text-center text-warning" id="name"></h3></div>
+				<div class="panel-body">
+					<h3 class="text-warning" id="address"></h3>
+					<h3 class="text-warning" id="type"></h3>	
+					<h4 id="email"></h4>
+					<h4 id="telephone"></h4>
+					<p id="description"></p>
+					<h4 class="text-warning" id="rating"></h4>
+					<h4 class="text-warning" id="reviewCount"></h4>
+					<ul id="errors"></ul>
+					<button class="btn btn-warning" id="addReview" type="button">Post review</button>
+					<button class="btn btn-danger" id="askQuestion" type="button">Ask question</button>
+					<button class="btn btn-warning" id="addFavourite" type="button">Favourite</button>	
+				</div>
 			</div>
 			<div id="reviews" class="col-md-4"></div>
 			<div id="questions" class="col-md-4"></div>

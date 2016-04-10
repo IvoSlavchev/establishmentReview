@@ -1,6 +1,22 @@
+body {
+	background-image: url('../assets/siteBkg.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+}
+
  .form-control:focus {
     border-color: #faebcc;
     box-shadow: 0px 1px 1px #eea236 inset, 0px 0px 1px #f0ad4e;
+}
+
+.panel, .panel-heading {
+	border-radius: 20px;
+}
+
+#addReviewPanel, #askQuestionPanel, #addAnswerPanel {
+	margin-left: 2%;
 }
 
  #askQuestionPanel .form-control:focus, #addAnswerPanel .form-control:focus {
@@ -44,7 +60,7 @@ input, select, textarea, form button, form a {
 	margin-left: auto;
 	margin-right:auto;
 	display: block;
-	width: 30%;
+	width: 200px;
 }
 
 .form-inline div {
@@ -67,6 +83,8 @@ input, select, textarea, form button, form a {
 	background-color: #fcf8e3;
 	border: 1px solid;
 	border-color: #faebcc; 
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
 }
 
 .breadcrumb li a {
@@ -95,12 +113,6 @@ input, select, textarea, form button, form a {
 	margin-top: -50px;
 	color: gray;
 	font-size: 16px;
-}
-
-#addFavourite {
-	float: right;
-	margin-right: 1%;
-	margin-top: 2%;
 }
 
 #questions a {

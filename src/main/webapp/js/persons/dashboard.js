@@ -42,8 +42,5 @@ $(document).ready(function() {
 		$("#questions").append(newItem);
 	}
 	
-	getCurrentlyLoggedInPerson().success(function(person) {
-		$("#welcome").text("Welcome, " + person.username);
-		getQuestions();
-	});
+	getQuestions();
 });
