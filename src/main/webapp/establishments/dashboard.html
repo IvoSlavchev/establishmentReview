@@ -12,18 +12,26 @@
 		</ul>
 		<a id="logout" href="/establishmentReview">Log out</a>
 		<div class="container">
-			<div class="panel panel-warning col-md-4" id="info">
-				<div class="panel-heading"><h3 class="text-center text-warning" id="name"></h3></div>
-				<div class="panel-body">
-					<h3 class="text-warning" id="address"></h3>
-					<h3 class="text-warning" id="type"></h3>	
-					<h4 id="email"></h4>
-					<h4 id="telephone"></h4>
-					<p id="description"></p>
-					<h4 class="text-warning" id="rating"></h4>
-					<h4 class="text-warning" id="reviewCount"></h4>
-					<ul id="errors"></ul>
-					<a class="btn btn-warning" id="edit" href="edit.html">Edit information</a>	
+			<div class="col-md-4">
+				<div class="panel panel-warning" id="info">
+					<div class="panel-heading"><h3 class="text-center" id="name"></h3></div>
+					<div class="panel-body">
+						<h3 class="text-warning" id="address"></h3>
+						<h3 class="text-warning" id="type"></h3>	
+						<h4 id="email"></h4>
+						<h4 id="telephone"></h4>
+						<p id="description"></p>
+						<h4 class="text-warning" id="rating"></h4>
+						<h4 class="text-warning" id="reviewCount"></h4>
+						<ul id="errors"></ul>
+						<a class="btn btn-warning" id="edit" href="edit.html">Edit information</a>	
+					</div>
+				</div>
+				<div class="panel panel-success">
+					<div class="panel-heading">Location</div>
+					<div class="panel-body">
+						<div id="map"></div>
+					</div>
 				</div>
 			</div>
 			<div id="reviews" class="col-md-4"></div>
@@ -35,13 +43,13 @@
 						<p id="questionText"></p>
 						<i id="questionDate"></i>
 						<div class="form-group">
-							<div class="col-sm-10">
+							<div class="col-sm-12">
 								<textarea name="answer" rows="8" class="form-control"
 									placeholder="Answer"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
+							<div class="col-sm-offset-2 col-sm-12">
 								<button type="button" class="btn btn-danger" id="saveAnswer">
 									Save</button>
 								<button type="button" class="btn btn-default cancel">Cancel</button>
@@ -51,6 +59,7 @@
 				</div>
 			</div>
 		</div>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhQFvrIWHNkEFWG8RAIWR73uIh2hYtULg"></script>
 		<script type="text/javascript" src="../libs/jquery-2.2.1.js"></script>
 		<script type="text/javascript" src="../libs/lodash-4.6.1.js"></script>
 		<script type="text/javascript" src="../js/base.js"></script>

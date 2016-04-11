@@ -12,7 +12,7 @@ $(document).ready(function() {
 		var password2 = $("[name='password2']").val();
 		
 		if (person.password == password2) {
-			sendSignup(person, ENDPOINT)
+			sendSignup(person, ENDPOINT);
 		} else {
 			listError("Passwords don't match!");
 		}

@@ -9,7 +9,7 @@ $(document).ready(function() {
 	var rating = 0;
 	
 	function contains(string, substring) {
-		return string.toUpperCase().indexOf(substring.toUpperCase()) > -1
+		return string.toUpperCase().indexOf(substring.toUpperCase()) > -1;
 	}
 	
 	function getInput() {

@@ -83,6 +83,26 @@ function showEstablishment(establishment) {
 				(establishment.allRatings / establishment.reviewsCount).toFixed(2) + " out of 5");
 		$("#reviewCount").text(establishment.reviewsCount + " reviews");
 	}
+	showOnMap(establishment.address);
+}
+
+function showOnMap(address) {
+	var map = new google.maps.Map(document.getElementById("map"), {
+		zoom: 17,
+		center: {lat: 0, lng: 0}
+	});
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode({"address": address}, function(results, status) {
+		if (status === google.maps.GeocoderStatus.OK) {
+			map.setCenter(results[0].geometry.location);
+			var marker = new google.maps.Marker({
+				map: map,
+				position: results[0].geometry.location
+			});
+		} else {
+			alert("Geocode error: " + status);
+		}
+	});
 }
 
 function getReviewsByEstablishment(establishmentId) {
