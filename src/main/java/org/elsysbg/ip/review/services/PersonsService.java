@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.elsysbg.ip.review.entities.Establishment;
 import org.elsysbg.ip.review.entities.Person;
 
 @Singleton
@@ -47,9 +48,10 @@ public class PersonsService {
 		}
 	}
 	
-	public Person updatePerson(Person person) {
+	public Person addFavourite(Person person, Establishment establishment) {
 		final EntityManager em = entityManagerService.createEntityManager();
 		try {
+			person.getFavourites().add(establishment);
 			em.getTransaction().begin();
 			final Person result = em.merge(person);
 			em.getTransaction().commit();

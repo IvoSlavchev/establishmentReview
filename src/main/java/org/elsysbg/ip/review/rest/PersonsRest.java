@@ -55,8 +55,7 @@ public class PersonsRest {
 	public Person addFavourite(@Auth Subject subject, @PathParam("establishmentId") long establishmentId) {
 		final Person person = authenticationService.getCurrentlyLoggedInPerson(subject);
 		final Establishment establishment = establishmentsService.getEstablishment(establishmentId);
-		person.getFavourites().add(establishment);
-		return personsService.updatePerson(person);
+		return personsService.addFavourite(person, establishment);
 	}
 	
 	@GET

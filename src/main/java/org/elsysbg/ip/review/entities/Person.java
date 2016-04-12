@@ -36,6 +36,7 @@ public class Person {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
+	@Column(name = "PERSON_ID", nullable = false)
 	private long id;
 	
 	@Column(nullable = false, unique = true)
@@ -51,10 +52,11 @@ public class Person {
 	@Column(nullable = false)
 	private SecurityRole role = SecurityRole.PERSON;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "Person_Establishment",
-		joinColumns = @JoinColumn(name = "person_id"),
-		inverseJoinColumns = @JoinColumn(name = "establishment_id"))
+	@JoinTable(joinColumns = {@JoinColumn(name = "person_id",
+			referencedColumnName = "PERSON_ID", nullable = false)}, 
+ 		inverseJoinColumns = {@JoinColumn(name = "establishment_id",
+ 			referencedColumnName = "ESTABLISHMENT_ID", nullable = false)})
+ 	@ManyToMany(targetEntity = Establishment.class, fetch = FetchType.EAGER)
 	private List<Establishment> favourites;
 	
 	public long getId() {

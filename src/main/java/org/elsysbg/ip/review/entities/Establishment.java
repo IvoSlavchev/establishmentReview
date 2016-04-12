@@ -31,6 +31,7 @@ public class Establishment {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
+	@Column(name = "ESTABLISHMENT_ID", nullable = false)
 	private long id;
 	
 	@Column(nullable = false, unique = true)

@@ -106,8 +106,9 @@ $(document).ready(function() {
 	
 	function attachHandlers() {
 		$("#addFavourite").click(function() {
-			// TODO
-			// addFavourite();
+			addFavourite();
+			$(this).hide();
+			alert("Added to favourites!");
 		});
 		
 		$("#addReview").click(function() {
