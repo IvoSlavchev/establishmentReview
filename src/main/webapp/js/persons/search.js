@@ -43,7 +43,7 @@ $(document).ready(function() {
 	function reloadList() {
 		return getEstablishments().then(function(response) {
 			$("#establishments").html("");
-			_.forEach(response, filterItems);
+			_.forEach(response.reverse(), filterItems);
 			if (!$("#establishments a").length) {
 				var newItem = $("<li />");
 				newItem.text("No results found!");

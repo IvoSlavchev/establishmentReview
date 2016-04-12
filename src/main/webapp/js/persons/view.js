@@ -14,18 +14,6 @@ $(document).ready(function() {
 		$("[name='opinion']").val("");
 		$("[name='question']").val("");
 	}
-
-	function addFavourite() {
-		$.ajax(getEndpoint(ENDPOINT_FAV, establishmentId), {
-			method: "POST"
-		});
-	}
-	
-	function showFavourites(person) {
-		_.forEach(person.favourites, function() {
-			alert(this.name);
-		});
-	}
 	
 	function createReview() {
 		var review = {
@@ -98,46 +86,101 @@ $(document).ready(function() {
 		$("#questions").append(newItem);
 	}
 	
+	function addFavourite() {
+		$.ajax(getEndpoint(ENDPOINT_FAV, establishmentId), {
+			method: "POST"
+		});
+	}
+	
+	function removeFavourite() {
+		$.ajax(getEndpoint(ENDPOINT_FAV, establishmentId), {
+			method: "DELETE"
+		});
+	}
+	
+	function checkFavourite() {
+		return $.ajax(getEndpoint(ENDPOINT_FAV, establishmentId), {
+			method: "GET",
+			dataType: "json"
+		});
+	}
+	
+	function checkFavouriteAdded() {
+		checkFavourite().then(function(response) {
+			if (response) {
+				createRemoveFavouriteButton();
+			} else {
+				createAddFavouriteButton();
+			}
+		})
+	}
+	
+	function createAddFavouriteButton() {
+		$(".favourites").remove();
+		var newButton = $("<button />");
+		newButton.addClass("btn btn-warning favourites");
+		newButton.attr("id", "addFavourite");
+		newButton.attr("type", "button");
+		newButton.text("Add to favourites");
+		$("#info .panel-body").prepend(newButton);
+	}
+	
+	function createRemoveFavouriteButton() {
+		$(".favourites").remove();
+		var newButton = $("<button />");
+		newButton.addClass("btn btn-danger favourites");
+		newButton.attr("id", "removeFavourite");
+		newButton.attr("type", "button");
+		newButton.text("Remove from favourites");
+		$("#info .panel-body").prepend(newButton);
+	}
+	
 	function reloadReviewsAndQuestions() {
 		getReviews(establishmentId);
 		getQuestions();
 	}
 	
-	function attachHandlers() {
-		$("#addFavourite").click(function() {
-			addFavourite();
-			$(this).hide();
-			alert("Added to favourites!");
-		});
-		
+	function attachHandlers() {	
 		$("#addReview").click(function() {
-			$("#addFavourite, #addReview, #askQuestion, #reviews, #questions").hide();
+			$("#addReview, #askQuestion, #reviews, #questions").hide();
 			$("#addReviewPanel").show();
 		})
 		
 		$("#askQuestion").click(function() {			
-			$("#addFavourite, #addReview, #askQuestion, #reviews, #questions").hide();
+			$("#addReview, #askQuestion, #reviews, #questions").hide();
 			$("#askQuestionPanel").show();
 		})
 		
 		$(".cancel").click(function() {
 			clearInput();
 			$("#addReviewPanel, #askQuestionPanel").hide();
-			$("#addFavourite, #addReview, #askQuestion, #reviews, #questions").show();
+			$("#addReview, #askQuestion, #reviews, #questions").show();
 		});
 		
 		$("#saveReview").click(function() {
 			createReview();
 			clearInput();
 			$("#addReviewPanel").hide();
-			$("#addFavourite, #addReview, #askQuestion, #reviews, #questions").show();
+			$("#addReview, #askQuestion, #reviews, #questions").show();
 		});
 		
 		$("#saveQuestion").click(function() {
 			createQuestion();
 			clearInput();
 			$("#askQuestionPanel").hide();
-			$("#addFavourite, #addReview, #askQuestion, #reviews, #questions").show();
+			$("#addReview, #askQuestion, #reviews, #questions").show();
+		});
+		
+		$("#info").on("click", "#addFavourite", function() {
+			addFavourite();
+			createRemoveFavouriteButton();
+			alert("Added to favourites!");
+		});
+		
+		$("#info").on("click", "#removeFavourite", function() {
+			removeFavourite();
+			createAddFavouriteButton()
+			alert("Removed from favourites!");
 		});
 	}
 	
@@ -146,6 +189,7 @@ $(document).ready(function() {
 	getEstablishment(establishmentId).then(showEstablishment);
 	getCurrentlyLoggedInPerson().success(function(person) {
 		personId = person.id;
+		checkFavouriteAdded();
 		reloadReviewsAndQuestions();
 		attachHandlers();
 	});

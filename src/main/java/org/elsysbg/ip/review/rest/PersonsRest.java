@@ -68,6 +68,19 @@ public class PersonsRest {
 	}
 	
 	@GET
+	@Path("/favourites/{establishmentId}")
+	@RequiresPermissions("persons:getFavourites")
+	public boolean checkFavourite(@Auth Subject subject, @PathParam("establishmentId") long establishmentId) {
+		final Person person = authenticationService.getCurrentlyLoggedInPerson(subject);
+		for (Establishment est : person.getFavourites()) {
+			if (est.getId() == establishmentId) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@GET
 	@Path("/questions")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@RequiresPermissions("persons:getQuestionsByAuthor")
