@@ -112,7 +112,7 @@ $(document).ready(function() {
 			} else {
 				createAddFavouriteButton();
 			}
-		})
+		});
 	}
 	
 	function createAddFavouriteButton() {
@@ -179,7 +179,7 @@ $(document).ready(function() {
 		
 		$("#info").on("click", "#removeFavourite", function() {
 			removeFavourite();
-			createAddFavouriteButton()
+			createAddFavouriteButton();
 			alert("Removed from favourites!");
 		});
 	}

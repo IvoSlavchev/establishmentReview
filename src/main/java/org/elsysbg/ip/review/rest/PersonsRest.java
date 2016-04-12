@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -78,6 +79,14 @@ public class PersonsRest {
 			}
 		}
 		return false;
+	}
+	
+	@DELETE
+	@Path("/favourites/{establishmentId}")
+	@RequiresPermissions("persons:removeFavourite")
+	public void removeFavourite(@Auth Subject subject, @PathParam("establishmentId") long establishmentId) {
+		final Person person = authenticationService.getCurrentlyLoggedInPerson(subject);
+		personsService.removeFavourite(person, establishmentId);
 	}
 	
 	@GET

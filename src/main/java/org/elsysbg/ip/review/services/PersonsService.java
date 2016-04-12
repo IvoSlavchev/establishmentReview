@@ -1,5 +1,7 @@
 package org.elsysbg.ip.review.services;
 
+import java.util.Iterator;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
@@ -56,6 +58,25 @@ public class PersonsService {
 			final Person result = em.merge(person);
 			em.getTransaction().commit();
 			return result;
+		} finally {
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+			em.close();
+		}
+	}
+	
+	public void removeFavourite(Person person, long establishmentId) {
+		final EntityManager em = entityManagerService.createEntityManager();
+		try {
+			for (final Iterator<Establishment> iterator = person.getFavourites().iterator(); iterator.hasNext();) {
+				if (iterator.next().getId() == establishmentId) {
+					iterator.remove();
+				}
+			}
+			em.getTransaction().begin();
+			em.merge(person);
+			em.getTransaction().commit();
 		} finally {
 			if (em.getTransaction().isActive()) {
 				em.getTransaction().rollback();

@@ -2,6 +2,7 @@ package org.elsysbg.ip.review.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -56,7 +57,7 @@ public class Person {
 			referencedColumnName = "PERSON_ID", nullable = false)}, 
  		inverseJoinColumns = {@JoinColumn(name = "establishment_id",
  			referencedColumnName = "ESTABLISHMENT_ID", nullable = false)})
- 	@ManyToMany(targetEntity = Establishment.class, fetch = FetchType.EAGER)
+ 	@ManyToMany(targetEntity = Establishment.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Establishment> favourites;
 	
 	public long getId() {
