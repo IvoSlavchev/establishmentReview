@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	"use strict";
 	
-	var ENDPOINT_FAV = "http://localhost:8080/establishmentReview/api/persons/favourites"
 	var ENDPOINT_REV = "http://localhost:8080/establishmentReview/api/reviews";
 	
 	function getQueryId() {

@@ -2,6 +2,7 @@ var ENDPOINT_PER = "http://localhost:8080/establishmentReview/api/persons";
 var ENDPOINT_EST = "http://localhost:8080/establishmentReview/api/establishments";
 var ENDPOINT_AUTH = "http://localhost:8080/establishmentReview/api/authentication";
 var ENDPOINT_QUEST = "http://localhost:8080/establishmentReview/api/questions";
+var ENDPOINT_FAV = "http://localhost:8080/establishmentReview/api/persons/favourites"
 
 function isEmail(email) {
     var regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -67,6 +68,34 @@ function getEstablishment(establishmentId) {
 			listError("No establishment found!");
 		},
 	});
+}
+
+function addEstablishment(item) {
+	var newItem = $("<div />");
+	newItem.addClass("panel panel-warning");
+	var newHeading = $("<div />");
+	newHeading.addClass("panel-heading");
+	var newLink = $("<a />")
+	newLink.attr("href", "view.html?=" + item.id);
+	newLink.addClass("btn-block");
+	newLink.text(item.name);
+	newHeading.append(newLink);
+	var newBody = $("<div />");
+	newBody.addClass("panel-body");
+	var newAddress = $("<p />");
+	newAddress.text(item.address);
+	var newType = $("<p />");
+	newType.text(item.type);
+	var newRating = $("<p />");
+	if (item.reviewsCount == 0) {
+		newRating.text("No reviews given")
+	} else {
+		newRating.text("Rated " + (item.allRatings / item.reviewsCount).toFixed(2) + " out of 5 from " +
+				item.reviewsCount + " reviews");
+	}
+	newBody.append(newAddress, newType, newRating);
+	newItem.append(newHeading, newBody);
+	return newItem;
 }
 
 function showEstablishment(establishment) {

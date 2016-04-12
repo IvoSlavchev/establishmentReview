@@ -38,7 +38,7 @@ public class Question {
 	@Column(nullable = false)
 	private String question;
 	
-	@Column()
+	@Column
 	private boolean answered = false;
 	
 	@Temporal(TemporalType.TIMESTAMP)

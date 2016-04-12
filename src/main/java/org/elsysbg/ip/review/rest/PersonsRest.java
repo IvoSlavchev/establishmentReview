@@ -51,11 +51,20 @@ public class PersonsRest {
 	@Path("/favourites/{establishmentId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@RequiresPermissions("persons:update")
+	@RequiresPermissions("persons:addFavourite")
 	public Person addFavourite(@Auth Subject subject, @PathParam("establishmentId") long establishmentId) {
 		final Person person = authenticationService.getCurrentlyLoggedInPerson(subject);
 		final Establishment establishment = establishmentsService.getEstablishment(establishmentId);
 		return personsService.addFavourite(person, establishment);
+	}
+	
+	@GET
+	@Path("/favourites")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresPermissions("persons:getFavourites")
+	public List<Establishment> getFavourites(@Auth Subject subject) {
+		final Person person = authenticationService.getCurrentlyLoggedInPerson(subject);
+		return person.getFavourites();
 	}
 	
 	@GET

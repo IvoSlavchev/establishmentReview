@@ -36,30 +36,7 @@ $(document).ready(function() {
 	}
 	
 	function addItemToList(item) {
-		var newItem = $("<div />");
-		newItem.addClass("panel panel-warning");
-		var newHeading = $("<div />");
-		newHeading.addClass("panel-heading");
-		var newLink = $("<a />")
-		newLink.attr("href", "view.html?=" + item.id);
-		newLink.addClass("btn-block");
-		newLink.text(item.name);
-		newHeading.append(newLink);
-		var newBody = $("<div />");
-		newBody.addClass("panel-body");
-		var newAddress = $("<p />");
-		newAddress.text(item.address);
-		var newType = $("<p />");
-		newType.text(item.type);
-		var newRating = $("<p />");
-		if (item.reviewsCount == 0) {
-			newRating.text("No reviews given")
-		} else {
-			newRating.text("Rated " + (item.allRatings / item.reviewsCount).toFixed(2) + " out of 5 from " +
-					item.reviewsCount + " reviews");
-		}
-		newBody.append(newAddress, newType, newRating);
-		newItem.append(newHeading, newBody);
+		var newItem = addEstablishment(item);
 		$("#establishments").append(newItem);
 	}
 		

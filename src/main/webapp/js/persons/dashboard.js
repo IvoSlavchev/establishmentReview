@@ -1,6 +1,25 @@
 $(document).ready(function() {
 	"use strict";
 	
+	function getPersonFavourites() {
+		return $.ajax(ENDPOINT_FAV, {
+			method: "GET",
+			dataType: "json"
+		});
+	}
+	
+	function getFavourites() {
+		return getPersonFavourites().then(function(response) {
+			$("#favourites").html("");
+			_.forEach(response.reverse(), addFavourite);
+		});
+	}
+	
+	function addFavourite(establishment) {
+		var newItem = addEstablishment(establishment);
+		$("#favourites").append(newItem);
+	}
+	
 	function getQuestionsByAuthor() {
 		return $.ajax(getEndpoint(ENDPOINT_PER, "questions"), {
 			method: "GET",
@@ -43,5 +62,6 @@ $(document).ready(function() {
 		$("#questions").append(newItem);
 	}
 	
+	getFavourites();
 	getQuestions();
 });
