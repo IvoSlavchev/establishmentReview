@@ -69,7 +69,7 @@ public class PersonsRest {
 	
 	@GET
 	@Path("/favourites/{establishmentId}")
-	@RequiresPermissions("persons:getFavourites")
+	@RequiresPermissions("persons:checkFavourite")
 	public boolean checkFavourite(@Auth Subject subject, @PathParam("establishmentId") long establishmentId) {
 		final Person person = authenticationService.getCurrentlyLoggedInPerson(subject);
 		for (Establishment est : person.getFavourites()) {
