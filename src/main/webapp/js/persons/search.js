@@ -55,6 +55,7 @@ $(document).ready(function() {
 		});
 	}
 
+	getCurrentlyLoggedInPerson();
 	reloadList();
 	
 	$("#search").click(function() {

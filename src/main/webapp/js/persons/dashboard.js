@@ -4,7 +4,12 @@ $(document).ready(function() {
 	function getPersonFavourites() {
 		return $.ajax(ENDPOINT_FAV, {
 			method: "GET",
-			dataType: "json"
+			dataType: "json",
+			error: function(xhr) {
+				if (xhr.status == 401 || xhr.status == 403) {
+					window.location = 'http://localhost:8080/establishmentReview';
+				}
+			}
 		});
 	}
 	

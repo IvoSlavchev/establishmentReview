@@ -30,14 +30,24 @@ function getEndpoint(ENDPOINT, suffix) {
 function getCurrentlyLoggedInPerson() {
 	return $.ajax(getEndpoint(ENDPOINT_AUTH, "persons"), {
 		method: "GET",
-		dataType: "json"
+		dataType: "json",
+		error: function(xhr) {
+			if (xhr.status == 401 || xhr.status == 403) {
+				window.location = 'http://localhost:8080/establishmentReview';
+			}
+		}
 	});
 }
 
 function getCurrentlyLoggedInEstablishment() {
 	return $.ajax(getEndpoint(ENDPOINT_AUTH, "establishments"), {
 		method: "GET",
-		dataType: "json"
+		dataType: "json",
+		error: function(xhr) {
+			if (xhr.status == 401 || xhr.status == 403) {
+				window.location = 'http://localhost:8080/establishmentReview';
+			}
+		}	
 	});
 }
 
@@ -70,9 +80,10 @@ function getEstablishment(establishmentId) {
 	return $.ajax(getEndpoint(ENDPOINT_EST, establishmentId), {
 		method: "GET",
 		dataType: "json",
-		error: function() {
-			$("#addReview").hide();
-			listError("No establishment found!");
+		error: function(xhr) {
+			if (xhr.status == 500) {
+				window.location = 'http://localhost:8080/establishmentReview/persons/search.html';
+			}
 		},
 	});
 }
