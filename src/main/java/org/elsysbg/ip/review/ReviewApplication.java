@@ -23,6 +23,7 @@ public class ReviewApplication extends ResourceConfig {
 		register(new SubjectFactory());
 		register(new AuthInjectionBinder());
 		register(new ShiroExceptionMapper());
+		register(new RollbackExceptionMapper());
 		
 		GuiceBridge.getGuiceBridge().initializeGuiceBridge(serviceLocator);
 		final GuiceIntoHK2Bridge guiceBridge = serviceLocator.getService(GuiceIntoHK2Bridge.class);
