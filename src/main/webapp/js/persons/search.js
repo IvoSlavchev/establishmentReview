@@ -46,7 +46,10 @@ $(document).ready(function() {
 			_.forEach(response.reverse(), filterItems);
 			if (!$("#establishments a").length) {
 				var newItem = $("<li />");
-				newItem.text("No results found!");
+				var newText = $("<h4 />");
+				newText.addClass("text text-center");
+				newText.text("No establishments found!");
+				newItem.append(newText);
 				$("#establishments").append(newItem);
 			}
 		});

@@ -15,7 +15,7 @@ $(document).ready(function() {
 			data: JSON.stringify(obj),
 			contentType: "application/json; charset=utf-8",
 			error: function(xhr) {
-				if (xhr.status == 500) {
+				if (xhr.status == 401) {
 					listError("Username or password incorrect!");
 				}
 			},

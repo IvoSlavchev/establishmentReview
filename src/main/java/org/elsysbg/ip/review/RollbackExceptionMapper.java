@@ -6,8 +6,7 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class RollbackExceptionMapper implements
-	ExceptionMapper<RollbackException> {
+public class RollbackExceptionMapper implements ExceptionMapper<RollbackException> {
 
 	@Override
 	public Response toResponse(RollbackException exception) {
