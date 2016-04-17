@@ -15,7 +15,12 @@ function isEmpty(obj) {
 
 function listError(text) {
 	$("#errors").empty();
-	$("#errors").append("<li>" + text + "</li>");
+	var newError = $("<li />");
+	var newText = $("<h4 />");
+	newText.addClass("text text-danger");
+	newText.text(text);
+	newError.append(newText);
+	$("#errors").append(newError);
 }
 
 function getEndpoint(ENDPOINT, suffix) {
@@ -44,8 +49,10 @@ function sendSignup(obj, ENDPOINT) {
 				dataType: "json",
 				data: JSON.stringify(obj),
 				contentType: "application/json; charset=utf-8",
-				error: function() {
-					listError(obj.username + " is already taken!");
+				error: function(xhr) {
+					if (xhr.status == 409) {
+						listError("Username " + obj.username + " is already taken!");
+					}
 				},
 				success: function() {
 					window.location = 'http://localhost:8080/establishmentReview';
